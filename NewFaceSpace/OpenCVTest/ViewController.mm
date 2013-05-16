@@ -20,6 +20,16 @@
 {
     [super viewDidLoad];
 
+    // get orientation right:
+
+    // see: http://stackoverflow.com/questions/9826920/uinavigationcontroller-force-rotate
+    //set statusbar to the desired rotation position
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
+    //present/dismiss viewcontroller in order to activate rotating.
+    UIViewController *mVC = [[UIViewController alloc] init];
+    [self presentViewController:mVC animated:NO completion:NULL];
+    [self dismissViewControllerAnimated:NO completion:NULL];
+    
     self.videoCamera = [[MyCvVideoCamera alloc] initWithParentView:_imageView];
 	self.videoCamera.defaultFPS = 15;
 	//self.videoCamera.grayscaleMode = YES;
@@ -41,10 +51,15 @@
     [self startCamera];
 	lbpCascade = [self loadCascade:@"lbpcascade_frontalface"];
 	alt2Cascade = [self loadCascade:@"haarcascade_frontalface_alt2"];
-	myCascade = [self loadCascade:@"2ndAttempt"];
+	myCascade = [self loadCascade:@"constrained_frontalface"];
 
 //    [self.view addSubview:_LBPImageView];
-    _LBPImageView.image = [UIImage imageNamed:@"Default.png"];
+    _LBPImageView.image = [UIImage imageNamed:@"1.png"];
+    _ALTImageView.image = [UIImage imageNamed:@"2.png"];
+    _MYImageView.image = [UIImage imageNamed:@"3.png"];
+}
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 #ifdef __cplusplus
@@ -69,10 +84,15 @@
         return;
     }
     
-    [self detectFace: image withCascade: lbpCascade showIn:_LBPImageView];
-    [self detectFace: image withCascade: alt2Cascade showIn:_ALTImageView];
-    int nFaces = [self detectFace: image withCascade: myCascade showIn:_MYImageView];
-    if (nFaces == 1) {
+    int votes = 0;
+    int nFaces = 0;
+    nFaces = [self detectFace: image withCascade: lbpCascade showIn:_LBPImageView defaultPng:@"1.png"];
+    if (nFaces > 0) votes++;
+    nFaces = [self detectFace: image withCascade: alt2Cascade showIn:_ALTImageView defaultPng:@"2.png"];
+    if (nFaces > 0) votes++;
+    nFaces = [self detectFace: image withCascade: myCascade showIn:_MYImageView defaultPng:@"3.png"];
+    if (nFaces > 0) votes++;
+    if (votes > 1) {
         self.FinalFaceImage = self.TempFaceImage;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self performSegueWithIdentifier:@"gotFaceSegue" sender:self];
@@ -91,7 +111,10 @@
 }
 //- (void)processImage:(cv::Mat&)image;
 
-- (int)detectFace:(cv::Mat&)image withCascade:(cv::CascadeClassifier *)cascade showIn:(UIImageView *)imageView
+- (int)detectFace:(cv::Mat&)image
+      withCascade:(cv::CascadeClassifier *)cascade
+           showIn:(UIImageView *)imageView
+       defaultPng:(NSString *)defaultPng
 {
     @autoreleasepool {
         float haar_scale = 1.15;
@@ -105,7 +128,11 @@
         cascade->detectMultiScale(image, faces, haar_scale,
                                      haar_minNeighbors, haar_flags, haar_minSize );
         //NSTimeInterval timeInterval = [start timeIntervalSinceNow];
-        
+        if (faces.size() == 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                imageView.image = [UIImage imageNamed:defaultPng];
+            });
+        }
         // draw faces
         for( int i = 0; i < faces.size(); i++ ) {
             
@@ -189,17 +216,11 @@
 
 
 - (void)startCamera {
-    //NSDate *start = [NSDate date];
     _cameraStartRequestTime = [NSDate date];
     [self.videoCamera start];
 }
 - (IBAction)unwindFromPickerToMain:(UIStoryboardSegue *) segue {
-//    [self startCamera];
     NSLog(@"Unwind seque called.");
-//    SecondViewController *sv = [segue sourceViewController];
-//    NSLog(@"Selected %i", sv.myPickerDelegate.selection );
-//    NSLog(@"Selected %@", [sv.myPickerDelegate.myData objectAtIndex:sv.myPickerDelegate.selection]);
-//    userSelection = [sv.myPickerDelegate.myData objectAtIndex:sv.myPickerDelegate.selection];
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     [self.videoCamera stop];

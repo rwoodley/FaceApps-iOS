@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController<NSURLConnectionDelegate>
+@interface SecondViewController : UIViewController
 {
     UIImage *_FaceImage;
-    NSMutableData *_responseData;
+//    NSMutableData *_responseData;
 }
-@property (weak, nonatomic) IBOutlet UIPickerView *MyPicker;
 
 @property (nonatomic, retain) UIImage *FaceImage;
 

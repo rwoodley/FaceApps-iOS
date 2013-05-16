@@ -10,7 +10,11 @@
 		4606669B173A0D780069B33D /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4606669A173A0D780069B33D /* opencv2.framework */; };
 		46175CA5173207B6008D6557 /* lbpcascade_frontalface.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46175CA4173207B6008D6557 /* lbpcascade_frontalface.xml */; };
 		46175CA81734BE9D008D6557 /* MyCvVideoCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 46175CA71734BE9D008D6557 /* MyCvVideoCamera.m */; };
-		46175CAA1734CCC2008D6557 /* 2ndAttempt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46175CA91734CCC2008D6557 /* 2ndAttempt.xml */; };
+		461A165117408B660098B122 /* constrained_frontalface.xml in Resources */ = {isa = PBXBuildFile; fileRef = 461A165017408B660098B122 /* constrained_frontalface.xml */; };
+		461A165417408CD60098B122 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A165317408CD60098B122 /* WebViewController.m */; };
+		461A165817434DD90098B122 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 461A165517434DD90098B122 /* 1.png */; };
+		461A165917434DD90098B122 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 461A165617434DD90098B122 /* 2.png */; };
+		461A165A17434DD90098B122 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 461A165717434DD90098B122 /* 3.png */; };
 		464801651729EB8A00AC7B02 /* SecondViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 464801641729EB8A00AC7B02 /* SecondViewController.mm */; };
 		4658DAD7172B92E30030BE32 /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4658DAD6172B92E30030BE32 /* haarcascade_frontalface_alt2.xml */; };
 		466CC3CC17260DD50021A943 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466CC3CB17260DD50021A943 /* UIKit.framework */; };
@@ -39,7 +43,12 @@
 		46175CA4173207B6008D6557 /* lbpcascade_frontalface.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = lbpcascade_frontalface.xml; sourceTree = "<group>"; };
 		46175CA61734BE9D008D6557 /* MyCvVideoCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MyCvVideoCamera.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		46175CA71734BE9D008D6557 /* MyCvVideoCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCvVideoCamera.m; sourceTree = "<group>"; };
-		46175CA91734CCC2008D6557 /* 2ndAttempt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 2ndAttempt.xml; sourceTree = "<group>"; };
+		461A165017408B660098B122 /* constrained_frontalface.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = constrained_frontalface.xml; sourceTree = "<group>"; };
+		461A165217408CD60098B122 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		461A165317408CD60098B122 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		461A165517434DD90098B122 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		461A165617434DD90098B122 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		461A165717434DD90098B122 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		464801631729EB8A00AC7B02 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SecondViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		464801641729EB8A00AC7B02 /* SecondViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = SecondViewController.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4658DAD6172B92E30030BE32 /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
@@ -134,6 +143,8 @@
 				466CC3DA17260DD50021A943 /* AppDelegate.h */,
 				466CC3DB17260DD50021A943 /* AppDelegate.m */,
 				466CC3E317260DD50021A943 /* MainStoryboard_iPhone.storyboard */,
+				461A165217408CD60098B122 /* WebViewController.h */,
+				461A165317408CD60098B122 /* WebViewController.m */,
 				464801631729EB8A00AC7B02 /* SecondViewController.h */,
 				464801641729EB8A00AC7B02 /* SecondViewController.mm */,
 				466CC3E617260DD50021A943 /* MainStoryboard_iPad.storyboard */,
@@ -148,7 +159,10 @@
 		466CC3D217260DD50021A943 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				46175CA91734CCC2008D6557 /* 2ndAttempt.xml */,
+				461A165517434DD90098B122 /* 1.png */,
+				461A165617434DD90098B122 /* 2.png */,
+				461A165717434DD90098B122 /* 3.png */,
+				461A165017408B660098B122 /* constrained_frontalface.xml */,
 				46175CA4173207B6008D6557 /* lbpcascade_frontalface.xml */,
 				4658DAD6172B92E30030BE32 /* haarcascade_frontalface_alt2.xml */,
 				466CC3D317260DD50021A943 /* FaceSpace-Info.plist */,
@@ -221,7 +235,10 @@
 				466CC3E817260DD50021A943 /* MainStoryboard_iPad.storyboard in Resources */,
 				4658DAD7172B92E30030BE32 /* haarcascade_frontalface_alt2.xml in Resources */,
 				46175CA5173207B6008D6557 /* lbpcascade_frontalface.xml in Resources */,
-				46175CAA1734CCC2008D6557 /* 2ndAttempt.xml in Resources */,
+				461A165117408B660098B122 /* constrained_frontalface.xml in Resources */,
+				461A165817434DD90098B122 /* 1.png in Resources */,
+				461A165917434DD90098B122 /* 2.png in Resources */,
+				461A165A17434DD90098B122 /* 3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +254,7 @@
 				466CC3EB17260DD50021A943 /* ViewController.mm in Sources */,
 				464801651729EB8A00AC7B02 /* SecondViewController.mm in Sources */,
 				46175CA81734BE9D008D6557 /* MyCvVideoCamera.m in Sources */,
+				461A165417408CD60098B122 /* WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
