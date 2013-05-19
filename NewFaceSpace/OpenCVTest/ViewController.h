@@ -28,7 +28,10 @@
 - (cv::CascadeClassifier*)loadCascade:(NSString*)filename;
 - (UIImage *)UIImageFromIplImage:(IplImage *)image;
 #endif
-- (int)detectFace:(cv::Mat&)image withCascade:(cv::CascadeClassifier *)cascade showIn:(UIImageView *)imageView;
+- (int)detectFace:(cv::Mat&)image
+      withCascade:(cv::CascadeClassifier *)cascade
+           showIn:(UIImageView *)imageView
+       defaultPng:(NSString *)defaultPng;
 - (IBAction)unwindFromPickerToMain:(UIStoryboardSegue *) segue;
 - (void)startCamera;
 
@@ -39,8 +42,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *LBPImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *ALTImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *MYImageView;
-@property (nonatomic, retain) UIImage *TempFaceImage;
-@property (nonatomic, retain) UIImage *FinalFaceImage;
+@property (nonatomic, retain) UIImage *TempFaceImage;                   // grey scale for thumbnails
+@property (nonatomic, retain) UIImage *TempFaceImage_Histogram;         // for passing....
+@property (nonatomic, retain) UIImage *FinalFaceImage;                  // grey scale on SecondViewController
+@property (nonatomic, retain) UIImage *FinalFaceImage_Histogram;        // goes to web-site
 @property (nonatomic, retain) MyCvVideoCamera *videoCamera;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 

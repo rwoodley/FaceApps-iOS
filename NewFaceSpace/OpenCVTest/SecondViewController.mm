@@ -66,7 +66,7 @@
     //NSLog(@"THe URL is %@", theURL);
     WebViewController *webVC =
     [self.storyboard instantiateViewControllerWithIdentifier:@"webViewController"];
-    webVC.FaceImage = self.FaceImage;
+    webVC.FaceImage = self.FaceImage_Histogram;
     [self.navigationController pushViewController:webVC animated:YES];
 }
 

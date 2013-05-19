@@ -80,6 +80,12 @@
 {
     NSTimeInterval timeInterval = [_cameraStartRequestTime timeIntervalSinceNow];
     if (fabs(timeInterval)*1000 < 2000) {   // a nice pause before we go straight back to submit screen.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _LBPImageView.image = [UIImage imageNamed:@"1.png"];
+            _ALTImageView.image = [UIImage imageNamed:@"2.png"];
+            _MYImageView.image = [UIImage imageNamed:@"3.png"];
+        });
+
         //NSLog(@"TimeInterval =  %f", timeInterval);
         return;
     }
@@ -92,8 +98,9 @@
     if (nFaces > 0) votes++;
     nFaces = [self detectFace: image withCascade: myCascade showIn:_MYImageView defaultPng:@"3.png"];
     if (nFaces > 0) votes++;
-    if (votes > 1) {
+    if (votes > 3) {
         self.FinalFaceImage = self.TempFaceImage;
+        self.FinalFaceImage_Histogram = self.TempFaceImage_Histogram;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self performSegueWithIdentifier:@"gotFaceSegue" sender:self];
         });
@@ -150,14 +157,18 @@
                                    r->y + r->height <= image.rows);
                 if (!avoidCrash) return 0;
                 cv::Mat subImg = image(*r);
-                cv::Mat subImgCopy;
-                cv::cvtColor(subImg, subImgCopy, CV_RGB2GRAY);
-                cv::equalizeHist(subImgCopy, subImgCopy);
+                cv::Mat subImg_Grey;
+                cv::Mat subImg_Histogram;
+                cv::cvtColor(subImg, subImg_Grey, CV_RGB2GRAY);
+                cv::equalizeHist(subImg_Grey, subImg_Histogram);
 
-                IplImage temp = subImgCopy;
+                IplImage temp = subImg_Grey;
                 self.TempFaceImage = [self UIImageFromIplImage:&temp];
+                IplImage temph = subImg_Histogram;
+                self.TempFaceImage_Histogram = [self UIImageFromIplImage:&temph];
                 subImg.release();
-                subImgCopy.release();
+                subImg_Grey.release();
+                subImg_Histogram.release();
                 dispatch_async(dispatch_get_main_queue(), ^{
                     imageView.image = self.TempFaceImage;
                 });
@@ -227,6 +238,7 @@
     NSLog(@"prepareForSegue: %@", segue.identifier);
     SecondViewController *sv = [segue destinationViewController];
     sv.FaceImage = self.FinalFaceImage;
+    sv.FaceImage_Histogram = self.FinalFaceImage_Histogram;
 }
 
 
