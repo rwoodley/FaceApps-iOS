@@ -16,9 +16,10 @@
     NSDate *_cameraStartRequestTime;
 
     MyCvVideoCamera *_videoCamera;
-    UISegmentedControl *_segmentedControl;
+    //UISegmentedControl *_segmentedControl;
     NSString *userSelection;
     bool cameraFrontFacing;
+    bool torchIsOn;
     cv::CascadeClassifier *lbpCascade;
     cv::CascadeClassifier *alt2Cascade;
     cv::CascadeClassifier *myCascade;
@@ -29,6 +30,7 @@
 - (UIImage *)UIImageFromIplImage:(IplImage *)image;
 #endif
 - (int)detectFace:(cv::Mat&)image
+       cleanImage:(cv::Mat&)cimage
       withCascade:(cv::CascadeClassifier *)cascade
            showIn:(UIImageView *)imageView
        defaultPng:(NSString *)defaultPng;
@@ -48,5 +50,7 @@
 @property (nonatomic, retain) UIImage *FinalFaceImage_Histogram;        // goes to web-site
 @property (nonatomic, retain) MyCvVideoCamera *videoCamera;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *flashSegmentedControl;
+- (IBAction)flashSegmentedControlValueChanged:(id)sender;
 
 @end

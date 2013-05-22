@@ -44,7 +44,8 @@
     [self presentViewController:mVC animated:NO completion:NULL];
     [self dismissViewControllerAnimated:NO completion:NULL];
     
-    double newHeight = _FaceImageView.frame.size.width * (352.0/288.0);
+    // the face image is a square... resize the image view.
+    double newHeight = _FaceImageView.frame.size.width;
     _FaceImageView.frame = CGRectMake(
                                   _FaceImageView.frame.origin.x,
                                   _FaceImageView.frame.origin.y, _FaceImageView.frame.size.width, newHeight);

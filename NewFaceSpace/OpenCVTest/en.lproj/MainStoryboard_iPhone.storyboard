@@ -33,22 +33,32 @@
                         <color key="backgroundColor" red="0.12017054635855133" green="0.052153564466999716" blue="0.79840353259999997" alpha="0.58999999999999997" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="TNl-4o-oE8">
+                        <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title="Try again" id="MgO-qL-CBm"/>
                         <barButtonItem key="leftBarButtonItem" id="ZMH-dF-JHY">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" momentary="YES" id="Pdl-Ya-InL">
-                                <rect key="frame" x="5" y="7" width="240" height="30"/>
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Pdl-Ya-InL">
+                                <rect key="frame" x="5" y="7" width="91" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Front"/>
                                     <segment title="Back"/>
-                                    <segment title="Faces"/>
-                                    <segment title="No Faces"/>
                                 </segments>
                                 <connections>
                                     <action selector="sgmentedControlIndexChanged:" destination="2" eventType="valueChanged" id="ovb-nK-Jq0"/>
                                 </connections>
                             </segmentedControl>
                         </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="Xfu-KB-YmC">
+                            <rect key="frame" x="104" y="7" width="131" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Flash" enabled="NO"/>
+                                <segment title="No Flash" enabled="NO"/>
+                            </segments>
+                            <connections>
+                                <action selector="flashSegmentedControlValueChanged:" destination="2" eventType="valueChanged" id="Q8f-jD-JaC"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Mode" id="Hab-oq-O1l">
                             <connections>
                                 <segue destination="wLr-4G-ZPA" kind="push" identifier="gotFaceSegue" id="933-5T-5yh"/>
@@ -59,6 +69,7 @@
                         <outlet property="ALTImageView" destination="MCC-Re-MDs" id="gO0-XY-LU4"/>
                         <outlet property="LBPImageView" destination="Pw3-tw-xXM" id="Yqu-B0-yOI"/>
                         <outlet property="MYImageView" destination="MOS-Rb-2d5" id="XTU-nh-O53"/>
+                        <outlet property="flashSegmentedControl" destination="Xfu-KB-YmC" id="EFm-ST-GmF"/>
                         <outlet property="imageView" destination="77h-Vh-YcH" id="zgc-4Z-Mgn"/>
                         <outlet property="segmentedControl" destination="Pdl-Ya-InL" id="GKj-7i-yYa"/>
                     </connections>

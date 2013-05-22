@@ -15,6 +15,7 @@
 
 @implementation ViewController
 @synthesize segmentedControl;
+@synthesize flashSegmentedControl;
 
 - (void)viewDidLoad
 {
@@ -48,12 +49,13 @@
     NSLog(@"image h*w = %f,%f", _imageView.frame.size.height, _imageView.frame.size.width);
 
     cameraFrontFacing = true;
+    [flashSegmentedControl setEnabled:NO forSegmentAtIndex:0];
+    [flashSegmentedControl setEnabled:NO forSegmentAtIndex:1];
     [self startCamera];
 	lbpCascade = [self loadCascade:@"lbpcascade_frontalface"];
 	alt2Cascade = [self loadCascade:@"haarcascade_frontalface_alt2"];
 	myCascade = [self loadCascade:@"constrained_frontalface"];
 
-//    [self.view addSubview:_LBPImageView];
     _LBPImageView.image = [UIImage imageNamed:@"1.png"];
     _ALTImageView.image = [UIImage imageNamed:@"2.png"];
     _MYImageView.image = [UIImage imageNamed:@"3.png"];
@@ -75,7 +77,27 @@
 	}
 	return mycascade;
 }
+- (void)manageTorch:(bool) turnOnTorch;
+{
+    if (turnOnTorch && torchIsOn) return;
+    if (!turnOnTorch && !torchIsOn) return; // yes, i could use an XOR here.
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([device hasTorch]) {
+        [device lockForConfiguration:nil];
+        if (turnOnTorch) {
+            [device setTorchMode:AVCaptureTorchModeOn];
+            torchIsOn = true;
+            NSLog(@"Turning Torch on");
+        }
+        else {
+            [device setTorchMode:AVCaptureTorchModeOff];
+            torchIsOn = false;
+            NSLog(@"Turning Torch off");
+        }
+        [device unlockForConfiguration];
+    }
 
+}
 - (void)processImage:(cv::Mat&)image;
 {
     NSTimeInterval timeInterval = [_cameraStartRequestTime timeIntervalSinceNow];
@@ -89,26 +111,35 @@
         //NSLog(@"TimeInterval =  %f", timeInterval);
         return;
     }
+    cv::Mat cleanImage;         // won't be drawing boxes on this image.
+    cleanImage = image.clone();
     
     int votes = 0;
     int nFaces = 0;
-    nFaces = [self detectFace: image withCascade: lbpCascade showIn:_LBPImageView defaultPng:@"1.png"];
+    nFaces = [self detectFace: image cleanImage:cleanImage withCascade: lbpCascade showIn:_LBPImageView defaultPng:@"1.png"];
     if (nFaces > 0) votes++;
-    nFaces = [self detectFace: image withCascade: alt2Cascade showIn:_ALTImageView defaultPng:@"2.png"];
+    nFaces = [self detectFace: image cleanImage:cleanImage withCascade: alt2Cascade showIn:_ALTImageView defaultPng:@"2.png"];
     if (nFaces > 0) votes++;
-    nFaces = [self detectFace: image withCascade: myCascade showIn:_MYImageView defaultPng:@"3.png"];
+    //NSLog(@"N votes = %d", votes);
+    if (flashSegmentedControl.selectedSegmentIndex == 0 && votes == 2)
+        [self manageTorch:true];
+
+    if (flashSegmentedControl.selectedSegmentIndex == 1)
+        [self manageTorch:false];
+    
+    nFaces = [self detectFace: image cleanImage:cleanImage withCascade: myCascade showIn:_MYImageView defaultPng:@"3.png"];
+
     if (nFaces > 0) votes++;
-    if (votes > 3) {
+    if (votes > 2) {
+        [self manageTorch:false];
         self.FinalFaceImage = self.TempFaceImage;
         self.FinalFaceImage_Histogram = self.TempFaceImage_Histogram;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self performSegueWithIdentifier:@"gotFaceSegue" sender:self];
         });
         
-//        SecondViewController *secondViewController =
-//        [self.storyboard instantiateViewControllerWithIdentifier:@"secondViewController"];
-//        [self.navigationController pushViewController:secondViewController animated:NO];
     }
+    cleanImage.release();
 }
 -(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation  {
     [self.videoCamera updateOrientation];
@@ -119,6 +150,7 @@
 //- (void)processImage:(cv::Mat&)image;
 
 - (int)detectFace:(cv::Mat&)image
+       cleanImage:(cv::Mat&)cleanImage
       withCascade:(cv::CascadeClassifier *)cascade
            showIn:(UIImageView *)imageView
        defaultPng:(NSString *)defaultPng
@@ -144,7 +176,7 @@
         for( int i = 0; i < faces.size(); i++ ) {
             
             cv::Rect* r = &faces[i];
-            cv::rectangle(image,
+            cv::rectangle(image,                // draw on 'dirty' image
                           cvPoint( r->x, r->y ),
                           cvPoint( r->x + r->width, r->y + r->height),
                           CV_RGB(0,0,255));
@@ -156,7 +188,7 @@
                                    0 <= r->y && 0 <= r->height &&
                                    r->y + r->height <= image.rows);
                 if (!avoidCrash) return 0;
-                cv::Mat subImg = image(*r);
+                cv::Mat subImg = cleanImage(*r);    // grab face from clean image
                 cv::Mat subImg_Grey;
                 cv::Mat subImg_Histogram;
                 cv::cvtColor(subImg, subImg_Grey, CV_RGB2GRAY);
@@ -203,25 +235,33 @@
 
 - (IBAction)segmentedControl:(id)sender {
 }
+- (IBAction)flashSegmentedControlValueChanged:(id)sender {
+    if (flashSegmentedControl.selectedSegmentIndex == 0) {
+        NSLog(@"Clicked 0.");
+    }
+    if (flashSegmentedControl.selectedSegmentIndex == 1) {
+        NSLog(@"Clicked 1.");
+    }
+}
+
 - (IBAction)sgmentedControlIndexChanged:(id)sender {
     if (segmentedControl.selectedSegmentIndex == 0) {
-        if (!cameraFrontFacing) [self.videoCamera switchCameras];
+        if (!cameraFrontFacing) {
+            [self.videoCamera switchCameras];
+            [flashSegmentedControl setEnabled:NO forSegmentAtIndex:0];
+            [flashSegmentedControl setEnabled:NO forSegmentAtIndex:1];
+        }
         cameraFrontFacing = true;
     }
     if (segmentedControl.selectedSegmentIndex == 1) {
-        if (cameraFrontFacing) [self.videoCamera switchCameras];
-        
-        AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        if ([device hasTorch]) {
-            [device lockForConfiguration:nil];
-            [device setTorchMode:AVCaptureTorchModeOn];  // use AVCaptureTorchModeOff to turn off
-            [device unlockForConfiguration];
+        if (cameraFrontFacing) {
+            [self.videoCamera switchCameras];
+            [flashSegmentedControl setEnabled:YES forSegmentAtIndex:0];
+            [flashSegmentedControl setEnabled:YES forSegmentAtIndex:1];
+            flashSegmentedControl.selectedSegmentIndex = 1;     // default to flash off.
+            torchIsOn = false;
         }
         cameraFrontFacing = false;
-    }
-    if (segmentedControl.selectedSegmentIndex == 2) {
-    }
-    if (segmentedControl.selectedSegmentIndex == 3) {
     }
 }
 
@@ -240,7 +280,5 @@
     sv.FaceImage = self.FinalFaceImage;
     sv.FaceImage_Histogram = self.FinalFaceImage_Histogram;
 }
-
-
 
 @end
