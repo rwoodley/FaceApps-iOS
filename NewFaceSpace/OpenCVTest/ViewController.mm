@@ -59,6 +59,20 @@
     _LBPImageView.image = [UIImage imageNamed:@"1.png"];
     _ALTImageView.image = [UIImage imageNamed:@"2.png"];
     _MYImageView.image = [UIImage imageNamed:@"3.png"];
+    NSString *sound; NSURL *soundURL;
+    sound = [[NSBundle mainBundle] pathForResource:@"Pop" ofType:@"aiff"];
+    soundURL = [NSURL fileURLWithPath:sound];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_sound1);
+    sound = [[NSBundle mainBundle] pathForResource:@"Bottle" ofType:@"aiff"];
+    soundURL = [NSURL fileURLWithPath:sound];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_sound2);
+    sound = [[NSBundle mainBundle] pathForResource:@"Tink" ofType:@"aiff"];
+    soundURL = [NSURL fileURLWithPath:sound];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_sound3);
+    _playedSound1 = false;
+    _playedSound2 = false;
+    _playedSound3 = false;
+
 }
 - (NSUInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
@@ -117,10 +131,27 @@
     int votes = 0;
     int nFaces = 0;
     nFaces = [self detectFace: image cleanImage:cleanImage withCascade: lbpCascade showIn:_LBPImageView defaultPng:@"1.png"];
-    if (nFaces > 0) votes++;
+    if (nFaces > 0) {
+        votes++;
+        if (!_playedSound1) {
+            AudioServicesPlaySystemSound(_sound1);
+            _playedSound1 = true;
+        }
+    }
+    else
+        _playedSound1 = false;
+    
     nFaces = [self detectFace: image cleanImage:cleanImage withCascade: alt2Cascade showIn:_ALTImageView defaultPng:@"2.png"];
-    if (nFaces > 0) votes++;
-    //NSLog(@"N votes = %d", votes);
+    if (nFaces > 0) {
+        votes++;
+        if (!_playedSound2) {
+            AudioServicesPlaySystemSound(_sound2);
+            _playedSound2 = true;
+        }
+    }
+    else
+        _playedSound2 = false;
+
     if (flashSegmentedControl.selectedSegmentIndex == 0 && votes == 2)
         [self manageTorch:true];
 
@@ -129,8 +160,12 @@
     
     nFaces = [self detectFace: image cleanImage:cleanImage withCascade: myCascade showIn:_MYImageView defaultPng:@"3.png"];
 
-    if (nFaces > 0) votes++;
+    if (nFaces > 0) {
+        votes++;
+        AudioServicesPlaySystemSound(_sound3);
+    }
     if (votes > 2) {
+
         [self manageTorch:false];
         self.FinalFaceImage = self.TempFaceImage;
         self.FinalFaceImage_Histogram = self.TempFaceImage_Histogram;

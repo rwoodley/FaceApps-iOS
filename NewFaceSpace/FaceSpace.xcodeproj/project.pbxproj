@@ -36,6 +36,13 @@
 		46AF892D17277B0700C4562E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46AF892C17277B0700C4562E /* CoreMedia.framework */; };
 		46AF892F17277B1700C4562E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46AF892E17277B1700C4562E /* QuartzCore.framework */; };
 		46AF893117277B2A00C4562E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46AF893017277B2A00C4562E /* CoreVideo.framework */; };
+		46FD4584174C7917004280B5 /* Basso.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 46FD4581174C7917004280B5 /* Basso.aiff */; };
+		46FD4585174C7917004280B5 /* Blow.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 46FD4582174C7917004280B5 /* Blow.aiff */; };
+		46FD4586174C7917004280B5 /* Bottle.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 46FD4583174C7917004280B5 /* Bottle.aiff */; };
+		46FD4588174C7B8F004280B5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FD4587174C7B8F004280B5 /* AudioToolbox.framework */; };
+		46FD458B174D35F3004280B5 /* Pop.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 46FD4589174D35F3004280B5 /* Pop.aiff */; };
+		46FD458C174D35F3004280B5 /* Tink.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 46FD458A174D35F3004280B5 /* Tink.aiff */; };
+		46FD458E174D3658004280B5 /* Morse.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 46FD458D174D3658004280B5 /* Morse.aiff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +83,13 @@
 		46AF892C17277B0700C4562E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		46AF892E17277B1700C4562E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		46AF893017277B2A00C4562E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		46FD4581174C7917004280B5 /* Basso.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Basso.aiff; sourceTree = "<group>"; };
+		46FD4582174C7917004280B5 /* Blow.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Blow.aiff; sourceTree = "<group>"; };
+		46FD4583174C7917004280B5 /* Bottle.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Bottle.aiff; sourceTree = "<group>"; };
+		46FD4587174C7B8F004280B5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		46FD4589174D35F3004280B5 /* Pop.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Pop.aiff; sourceTree = "<group>"; };
+		46FD458A174D35F3004280B5 /* Tink.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Tink.aiff; sourceTree = "<group>"; };
+		46FD458D174D3658004280B5 /* Morse.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Morse.aiff; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46FD4588174C7B8F004280B5 /* AudioToolbox.framework in Frameworks */,
 				4606669B173A0D780069B33D /* opencv2.framework in Frameworks */,
 				46AF893117277B2A00C4562E /* CoreVideo.framework in Frameworks */,
 				46AF892F17277B1700C4562E /* QuartzCore.framework in Frameworks */,
@@ -103,6 +118,7 @@
 		466CC3BF17260DD50021A943 = {
 			isa = PBXGroup;
 			children = (
+				46FD4587174C7B8F004280B5 /* AudioToolbox.framework */,
 				4606669A173A0D780069B33D /* opencv2.framework */,
 				466CC3D117260DD50021A943 /* FaceSpace */,
 				466CC3CA17260DD50021A943 /* Frameworks */,
@@ -159,6 +175,12 @@
 		466CC3D217260DD50021A943 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				46FD458D174D3658004280B5 /* Morse.aiff */,
+				46FD4589174D35F3004280B5 /* Pop.aiff */,
+				46FD458A174D35F3004280B5 /* Tink.aiff */,
+				46FD4581174C7917004280B5 /* Basso.aiff */,
+				46FD4582174C7917004280B5 /* Blow.aiff */,
+				46FD4583174C7917004280B5 /* Bottle.aiff */,
 				461A165517434DD90098B122 /* 1.png */,
 				461A165617434DD90098B122 /* 2.png */,
 				461A165717434DD90098B122 /* 3.png */,
@@ -239,6 +261,12 @@
 				461A165817434DD90098B122 /* 1.png in Resources */,
 				461A165917434DD90098B122 /* 2.png in Resources */,
 				461A165A17434DD90098B122 /* 3.png in Resources */,
+				46FD4584174C7917004280B5 /* Basso.aiff in Resources */,
+				46FD4585174C7917004280B5 /* Blow.aiff in Resources */,
+				46FD4586174C7917004280B5 /* Bottle.aiff in Resources */,
+				46FD458B174D35F3004280B5 /* Pop.aiff in Resources */,
+				46FD458C174D35F3004280B5 /* Tink.aiff in Resources */,
+				46FD458E174D3658004280B5 /* Morse.aiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

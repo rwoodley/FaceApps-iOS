@@ -14,9 +14,14 @@
 @interface ViewController : UIViewController <CvVideoCameraDelegate>
 {
     NSDate *_cameraStartRequestTime;
-
+	SystemSoundID	_sound1;
+	SystemSoundID	_sound2;
+	SystemSoundID	_sound3;
+    bool _playedSound1;
+    bool _playedSound2;
+    bool _playedSound3;
     MyCvVideoCamera *_videoCamera;
-    //UISegmentedControl *_segmentedControl;
+
     NSString *userSelection;
     bool cameraFrontFacing;
     bool torchIsOn;
