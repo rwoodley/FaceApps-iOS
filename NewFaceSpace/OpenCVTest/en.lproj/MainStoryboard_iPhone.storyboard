@@ -59,7 +59,7 @@
                                 <action selector="flashSegmentedControlValueChanged:" destination="2" eventType="valueChanged" id="Q8f-jD-JaC"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" title="Mode" id="Hab-oq-O1l">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Mode" id="Hab-oq-O1l">
                             <connections>
                                 <segue destination="wLr-4G-ZPA" kind="push" identifier="gotFaceSegue" id="933-5T-5yh"/>
                             </connections>
@@ -143,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OW4-QQ-sg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="763" y="63"/>
+            <point key="canvasLocation" x="827" y="159"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LND-HJ-fEE">
@@ -168,6 +168,38 @@
             <point key="canvasLocation" x="320" y="-195"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="SecondViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="userTappedSubmitFace:"/>
+                <relationship kind="outlet" name="FaceImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="flashSegmentedControlValueChanged:"/>
+                <relationship kind="action" name="unwindFromPickerToMain:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="outlet" name="ALTImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="LBPImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="MYImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="TopLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="flashSegmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
