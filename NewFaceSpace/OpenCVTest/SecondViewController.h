@@ -18,5 +18,5 @@
 @property (nonatomic, retain) UIImage *FaceImage_Histogram;
 
 @property (weak, nonatomic) IBOutlet UIImageView *FaceImageView;
-- (IBAction)userTappedSubmitFace:(id)sender;
+//- (IBAction)userTappedSubmitFace:(id)sender;
 @end

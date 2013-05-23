@@ -311,9 +311,6 @@
     _cameraStartRequestTime = [NSDate date];
     [self.videoCamera start];
 }
-- (IBAction)unwindFromPickerToMain:(UIStoryboardSegue *) segue {
-    NSLog(@"Unwind seque called.");
-}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     [self.videoCamera stop];
     NSLog(@"prepareForSegue: %@", segue.identifier);
@@ -321,5 +318,10 @@
     sv.FaceImage = self.FinalFaceImage;
     sv.FaceImage_Histogram = self.FinalFaceImage_Histogram;
 }
+- (IBAction) unwindToMain:(UIStoryboardSegue *) sender {
+    NSLog(@"Unwind seque called");
+    [self.videoCamera start];
+}
+
 
 @end

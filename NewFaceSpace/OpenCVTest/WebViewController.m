@@ -8,10 +8,6 @@
 
 #import "WebViewController.h"
 
-@interface WebViewController ()
-
-@end
-
 @implementation WebViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -28,8 +24,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //[UIDevice currentDevice].orientation = UIDeviceOrientationLandscapeLeft;
+
+    [self.navigationItem setHidesBackButton:YES animated:YES];
     
+    // Hack to force this to be in landscape mode:
     // see: http://stackoverflow.com/questions/9826920/uinavigationcontroller-force-rotate
     //set statusbar to the desired rotation position
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:NO];
@@ -38,29 +36,21 @@
     [self presentViewController:mVC animated:NO completion:NULL];
     [self dismissViewControllerAnimated:NO completion:NULL];
     
-    //[UIViewController attemptRotationToDeviceOrientation];
-    //CGAffineTransform newTransform;
-    //newTransform = CGAffineTransformMakeRotation(M_PI/2);
-    //self.webView.transform = newTransform;
-    //self.view.bounds = CGRectMake(0.0, 0.0, 480, 320);
-    //self.webView.bounds = self.view.bounds;
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"Loading" ofType:@"html" inDirectory:nil];
+    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    [self.webView loadHTMLString:htmlString baseURL:nil];
+    
     [self uploadImage];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)uploadImage {
-	/*
-	 turning the image into a NSData object
-	 getting the image back out of the UIImageView
-	 setting the quality to 90
-     */
+
 	NSData *imageData = UIImageJPEGRepresentation(_FaceImage, 90);
-	// setting up the URL to post to
 	NSString *urlString = @"http://facespace.apphb.com/iosUpload.aspx";
 	
 	// setting up the request object now
@@ -68,44 +58,16 @@
 	[request setURL:[NSURL URLWithString:urlString]];
 	[request setHTTPMethod:@"POST"];
 	
-	/*
-	 add some header info now
-	 we always need a boundary when we post a file
-	 also we need to set the content type
-	 
-	 You might want to generate a random boundary.. this is just the same
-	 as my output from wireshark on a valid html post
-     */
 	NSString *boundary = @"---------------------------14737809831466499882746641449";
 	NSString *contentType1 = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
 	[request addValue:contentType1 forHTTPHeaderField: @"Content-Type"];
 	
-	/*
-	 now lets create the body of the post
-     */
 	NSMutableData *body = [NSMutableData data];
-	//[body appendData:[[NSString stringWithFormat:@"rn--%@rn",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    //NSString *contentDisposition = @"Content-Disposition: form-data; name=\"userfile\"; filename=\"ipodfile.jpg\"\r\n";
-    //[body appendData:[contentDisposition dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    //NSString *contentType2 = @"Content-Type: application/octet-streamrnrn";
-	//[body appendData:[contentType2 dataUsingEncoding:NSUTF8StringEncoding]];
     
 	[body appendData:[NSData dataWithData:imageData]];
-	//[body appendData:[[NSString stringWithFormat:@"rn--%@--rn",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	// setting the body of the post to the reqeust
+
 	[request setHTTPBody:body];
 	
-	// now lets make the connection to the web - Synchronous version
-    /*
-     NSError *requestError;
-     NSURLResponse *urlResponse = nil;
-     NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError ];
-     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-     
-     NSLog(returnString);
-     */
     NSURLConnection *conn = [[NSURLConnection alloc] init];
     (void)[conn initWithRequest:request delegate:self];
 }
@@ -133,9 +95,9 @@
 - (NSURLRequest *)connection:(NSURLConnection *)connection
              willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response
 {
-    //    NSURLRequest *newRequest = request;
-        NSLog(@"URL is %@", response.URL);
-        NSLog(@"URL is %@", request.URL);
+
+    NSLog(@"URL is %@", response.URL);
+    NSLog(@"URL is %@", request.URL);
     
     if (response) {
         NSMutableURLRequest *r = [request mutableCopy];
@@ -151,11 +113,7 @@
         return request;
 }
 - (void) showCarouselWebPage:(NSString *) theURL {
-    NSLog(@"THe URL is %@", theURL);
-    //WebViewController *webVC =
-    //[self.storyboard instantiateViewControllerWithIdentifier:@"webViewController"];
-    //webVC.FaceURL = theURL;
-    //[self.navigationController pushViewController:webVC animated:YES];
+    //NSLog(@"Redirecting to %@", theURL);
 
     NSURL *url = [[NSURL alloc] initWithString:theURL];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];

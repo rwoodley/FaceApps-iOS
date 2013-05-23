@@ -39,9 +39,10 @@
       withCascade:(cv::CascadeClassifier *)cascade
            showIn:(UIImageView *)imageView
        defaultPng:(NSString *)defaultPng;
-- (IBAction)unwindFromPickerToMain:(UIStoryboardSegue *) segue;
+
 - (void)startCamera;
 
+- (IBAction) unwindToMain:(UIStoryboardSegue *) sender;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *TopLabel;

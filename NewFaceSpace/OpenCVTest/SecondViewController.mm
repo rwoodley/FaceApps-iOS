@@ -52,13 +52,17 @@
     NSLog(@"image h*w = %f,%f", _FaceImageView.frame.size.height, _FaceImageView.frame.size.width);
     self.FaceImageView.image = self.FaceImage;
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"***prepareForSegue: %@", segue.identifier);
+    WebViewController *webVC = [segue destinationViewController];
+    webVC.FaceImage = self.FaceImage_Histogram;
+}
+/*
 - (IBAction)userTappedSubmitFace:(id)sender {
     NSLog(@"Tapped me.");
     [self showCarouselWebPage];
@@ -70,5 +74,6 @@
     webVC.FaceImage = self.FaceImage_Histogram;
     [self.navigationController pushViewController:webVC animated:YES];
 }
+ */
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46046FDF174DC338005DE6CC /* Loading.html in Resources */ = {isa = PBXBuildFile; fileRef = 46046FDE174DC338005DE6CC /* Loading.html */; };
 		4606669B173A0D780069B33D /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4606669A173A0D780069B33D /* opencv2.framework */; };
 		46175CA5173207B6008D6557 /* lbpcascade_frontalface.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46175CA4173207B6008D6557 /* lbpcascade_frontalface.xml */; };
 		46175CA81734BE9D008D6557 /* MyCvVideoCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 46175CA71734BE9D008D6557 /* MyCvVideoCamera.m */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46046FDE174DC338005DE6CC /* Loading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Loading.html; sourceTree = "<group>"; };
 		4606669A173A0D780069B33D /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../ios/opencv2.framework; sourceTree = "<group>"; };
 		46175CA4173207B6008D6557 /* lbpcascade_frontalface.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = lbpcascade_frontalface.xml; sourceTree = "<group>"; };
 		46175CA61734BE9D008D6557 /* MyCvVideoCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MyCvVideoCamera.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -175,6 +177,7 @@
 		466CC3D217260DD50021A943 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				46046FDE174DC338005DE6CC /* Loading.html */,
 				46FD458D174D3658004280B5 /* Morse.aiff */,
 				46FD4589174D35F3004280B5 /* Pop.aiff */,
 				46FD458A174D35F3004280B5 /* Tink.aiff */,
@@ -267,6 +270,7 @@
 				46FD458B174D35F3004280B5 /* Pop.aiff in Resources */,
 				46FD458C174D35F3004280B5 /* Tink.aiff in Resources */,
 				46FD458E174D3658004280B5 /* Morse.aiff in Resources */,
+				46046FDF174DC338005DE6CC /* Loading.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
