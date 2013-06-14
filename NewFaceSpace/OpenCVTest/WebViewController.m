@@ -51,8 +51,12 @@
 - (IBAction)uploadImage {
 
 	NSData *imageData = UIImageJPEGRepresentation(_FaceImage, 90);
-	NSString *urlString = @"http://facespace.apphb.com/iosUpload.aspx";
-	
+	NSString *deviceName = [[[UIDevice currentDevice] name] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//	NSString *encodedDeviceName = [NSString stringByAddingPercentEscapesUsingEncoding: deviceName];
+	NSString *vendorID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+	NSString *urlStringPrefix = @"http://facefield.org/iosUpload.aspx?devID=";
+    NSString *urlString = [[[urlStringPrefix stringByAppendingString:vendorID] stringByAppendingString:@"&devName="] stringByAppendingString:  deviceName];
+    NSLog(@"Posting to %@", urlString);
 	// setting up the request object now
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 	[request setURL:[NSURL URLWithString:urlString]];

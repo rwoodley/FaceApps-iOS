@@ -47,7 +47,7 @@
                                   _imageView.frame.origin.x,
                                   _imageView.frame.origin.y, _imageView.frame.size.width, newHeight);
     NSLog(@"image h*w = %f,%f", _imageView.frame.size.height, _imageView.frame.size.width);
-
+    
     cameraFrontFacing = true;
     [flashSegmentedControl setEnabled:NO forSegmentAtIndex:0];
     [flashSegmentedControl setEnabled:NO forSegmentAtIndex:1];
@@ -188,7 +188,6 @@
 -(void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [self.videoCamera updateOrientation];
 }
-//- (void)processImage:(cv::Mat&)image;
 
 - (int)detectFace:(cv::Mat&)image
        cleanImage:(cv::Mat&)cleanImage
