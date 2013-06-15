@@ -36,9 +36,10 @@
     [self presentViewController:mVC animated:NO completion:NULL];
     [self dismissViewControllerAnimated:NO completion:NULL];
     
+    NSURL *url=[[NSBundle mainBundle] bundleURL];
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"Loading" ofType:@"html" inDirectory:nil];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
-    [self.webView loadHTMLString:htmlString baseURL:nil];
+    [self.webView loadHTMLString:htmlString baseURL:url];
     
     [self uploadImage];
 }

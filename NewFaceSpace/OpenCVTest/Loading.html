@@ -1,7 +1,38 @@
 <html>
-    <body>
-        <h1>Contacting Face Research Site....</h1>
-        <h1>Fetching Data....</h1>
-        <img src="1.png"/>
+    <head>
+         <style TYPE="text/css">
+       <!--
+       body {
+background: #a9e4f7; /* Old browsers */
+background: -moz-linear-gradient(top,  #a9e4f7 0%, #0fb4e7 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a9e4f7), color-stop(100%,#0fb4e7)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #a9e4f7 0%,#0fb4e7 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #a9e4f7 0%,#0fb4e7 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #a9e4f7 0%,#0fb4e7 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #a9e4f7 0%,#0fb4e7 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9e4f7', endColorstr='#0fb4e7',GradientType=0 ); /* IE6-9 */
+    -->
+       }
+         </style>
+         <script>
+            function initDiagram() {
+                var img1 = document.getElementById("1");
+                var img2 = document.getElementById("2");
+                var img3 = document.getElementById("3");
+                img1.style.display = "None";
+                img2.style.display = "None";
+                img3.style.display = "None";
+                var t1=setTimeout(function(){img1.style.display = "inline";},1000);
+                var t2=setTimeout(function(){img2.style.display = "inline";},2000);
+                var t3=setTimeout(function(){img3.style.display = "inline";},3000);
+                
+            }
+         </script>
+</head>
+    <body onload="initDiagram()">
+        <h1>Uploading to the Face Field...</h1>
+        <img id="1" src="1.png"/>
+        <img id="2" src="2.png"/>
+        <img id="3" src="3.png"/>
     </body>
 </html>
