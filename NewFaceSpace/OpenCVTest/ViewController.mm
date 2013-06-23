@@ -216,6 +216,12 @@
         for( int i = 0; i < faces.size(); i++ ) {
             
             cv::Rect* r = &faces[i];
+            
+            // expand so we don't cut off everyone's chin
+            int newWidth = (int) r->width*0.2;
+            (*r) += cv::Size(newWidth,newWidth);        // overall bigger
+            (*r) -= cv::Point(newWidth/2,newWidth/2);   // recenter
+            
             cv::rectangle(image,                // draw on 'dirty' image
                           cvPoint( r->x, r->y ),
                           cvPoint( r->x + r->width, r->y + r->height),
