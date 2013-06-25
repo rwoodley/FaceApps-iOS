@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4600E6FD177951AD003E4008 /* RollViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4600E6FC177951AD003E4008 /* RollViewController.mm */; };
 		46046FDF174DC338005DE6CC /* Loading.html in Resources */ = {isa = PBXBuildFile; fileRef = 46046FDE174DC338005DE6CC /* Loading.html */; };
 		4606669B173A0D780069B33D /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4606669A173A0D780069B33D /* opencv2.framework */; };
 		46175CA5173207B6008D6557 /* lbpcascade_frontalface.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46175CA4173207B6008D6557 /* lbpcascade_frontalface.xml */; };
@@ -47,6 +48,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4600E6FB177951AD003E4008 /* RollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollViewController.h; sourceTree = "<group>"; };
+		4600E6FC177951AD003E4008 /* RollViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RollViewController.mm; sourceTree = "<group>"; };
 		46046FDE174DC338005DE6CC /* Loading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Loading.html; sourceTree = "<group>"; };
 		4606669A173A0D780069B33D /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../ios/opencv2.framework; sourceTree = "<group>"; };
 		46175CA4173207B6008D6557 /* lbpcascade_frontalface.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = lbpcascade_frontalface.xml; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 		466CC3D117260DD50021A943 /* FaceSpace */ = {
 			isa = PBXGroup;
 			children = (
+				4600E6FB177951AD003E4008 /* RollViewController.h */,
+				4600E6FC177951AD003E4008 /* RollViewController.mm */,
 				466CC3E917260DD50021A943 /* ViewController.h */,
 				466CC3EA17260DD50021A943 /* ViewController.mm */,
 				466CC3DA17260DD50021A943 /* AppDelegate.h */,
@@ -287,6 +292,7 @@
 				464801651729EB8A00AC7B02 /* SecondViewController.mm in Sources */,
 				46175CA81734BE9D008D6557 /* MyCvVideoCamera.m in Sources */,
 				461A165417408CD60098B122 /* WebViewController.m in Sources */,
+				4600E6FD177951AD003E4008 /* RollViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

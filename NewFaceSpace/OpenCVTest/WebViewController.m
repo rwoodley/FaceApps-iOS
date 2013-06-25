@@ -101,14 +101,14 @@
              willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response
 {
 
-    NSLog(@"URL is %@", response.URL);
-    NSLog(@"URL is %@", request.URL);
+    //NSLog(@"URL is %@", response.URL);    // iosUpload URL
+    //NSLog(@"URL is %@", request.URL);     // Carousel.aspx redirect
     
     if (response) {
         NSMutableURLRequest *r = [request mutableCopy];
         // when you get here, request.URL has the redirect response.
         NSString* launchUrl = [[request URL]  absoluteString];
-        NSLog(@"Redirecting to %@", launchUrl);
+        //NSLog(@"Redirecting to %@", launchUrl);
         //[[UIApplication sharedApplication] openURL:[request URL]];
         [self showCarouselWebPage:launchUrl];
         [r setURL: [request URL]];

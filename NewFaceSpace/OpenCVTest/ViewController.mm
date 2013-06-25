@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "SecondViewController.h"
+#import "RollViewController.h"
 
 @interface ViewController ()
 
@@ -15,7 +16,6 @@
 
 @implementation ViewController
 @synthesize segmentedControl;
-@synthesize flashSegmentedControl;
 
 - (void)viewDidLoad
 {
@@ -49,9 +49,13 @@
     NSLog(@"image h*w = %f,%f", _imageView.frame.size.height, _imageView.frame.size.width);
     
     cameraFrontFacing = true;
-    [flashSegmentedControl setEnabled:NO forSegmentAtIndex:0];
-    [flashSegmentedControl setEnabled:NO forSegmentAtIndex:1];
     [self startCamera];
+    [segmentedControl setTitle:@"Front" forSegmentAtIndex:0];
+    
+    torchIsOn = false;
+    torchShouldBeOn = false;
+    [segmentedControl setTitle:@"No Flash" forSegmentAtIndex:1];
+    
 	lbpCascade = [self loadCascade:@"lbpcascade_frontalface"];
 	alt2Cascade = [self loadCascade:@"haarcascade_frontalface_alt2"];
 	myCascade = [self loadCascade:@"constrained_frontalface"];
@@ -153,12 +157,12 @@
     else
         _playedSound2 = false;
 
-    if (flashSegmentedControl.selectedSegmentIndex == 0 && votes == 2)
+    if (torchShouldBeOn && votes == 2)
         [self manageTorch:true];
 
-    if (flashSegmentedControl.selectedSegmentIndex == 1)
+    if (!torchShouldBeOn)
         [self manageTorch:false];
-    
+
     nFaces = [self detectFace: image cleanImage:cleanImage withCascade: myCascade showIn:_MYImageView defaultPng:@"3.png"];
 
     if (nFaces > 0) {
@@ -199,7 +203,7 @@
         float haar_scale = 1.15;
         int haar_minNeighbors = 3;
         int haar_flags = 0 | CV_HAAR_SCALE_IMAGE | CV_HAAR_DO_CANNY_PRUNING;
-        int minSize = 60;
+        int minSize = 120;
         cv::Size haar_minSize = cvSize(minSize, minSize);
         std::vector<cv::Rect> faces;
 
@@ -281,33 +285,44 @@
 
 - (IBAction)segmentedControl:(id)sender {
 }
-- (IBAction)flashSegmentedControlValueChanged:(id)sender {
-    if (flashSegmentedControl.selectedSegmentIndex == 0) {
-        NSLog(@"Clicked 0.");
-    }
-    if (flashSegmentedControl.selectedSegmentIndex == 1) {
-        NSLog(@"Clicked 1.");
-    }
-}
+
 
 - (IBAction)sgmentedControlIndexChanged:(id)sender {
     if (segmentedControl.selectedSegmentIndex == 0) {
-        if (!cameraFrontFacing) {
-            [self.videoCamera switchCameras];
-            [flashSegmentedControl setEnabled:NO forSegmentAtIndex:0];
-            [flashSegmentedControl setEnabled:NO forSegmentAtIndex:1];
+        cameraFrontFacing = !cameraFrontFacing;
+        [self.videoCamera switchCameras];
+        if (cameraFrontFacing) {
+            [segmentedControl setTitle:@"Front" forSegmentAtIndex:0];
+            [segmentedControl setTitle:@"No Flash" forSegmentAtIndex:1];
+            [segmentedControl setEnabled:false forSegmentAtIndex:1];
+            [self manageTorch:false];
+            torchShouldBeOn = false;
         }
-        cameraFrontFacing = true;
+        else {
+            [segmentedControl setTitle:@"Back" forSegmentAtIndex:0];
+            [segmentedControl setTitle:@"No Flash" forSegmentAtIndex:1];
+            AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+            if ([device hasTorch])
+                [segmentedControl setEnabled:true forSegmentAtIndex:1];
+            else
+                [segmentedControl setEnabled:true forSegmentAtIndex:0];
+            [self manageTorch:false];
+            torchShouldBeOn = false;
+        }
     }
     if (segmentedControl.selectedSegmentIndex == 1) {
-        if (cameraFrontFacing) {
-            [self.videoCamera switchCameras];
-            [flashSegmentedControl setEnabled:YES forSegmentAtIndex:0];
-            [flashSegmentedControl setEnabled:YES forSegmentAtIndex:1];
-            flashSegmentedControl.selectedSegmentIndex = 1;     // default to flash off.
-            torchIsOn = false;
-        }
-        cameraFrontFacing = false;
+        torchShouldBeOn = !torchShouldBeOn;
+        if (torchShouldBeOn)
+            [segmentedControl setTitle:@"Flash" forSegmentAtIndex:1];
+        else
+            [segmentedControl setTitle:@"No Flash" forSegmentAtIndex:1];
+    }
+    if (segmentedControl.selectedSegmentIndex == 2) {
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStyleBordered target:nil action:nil];
+        [self.videoCamera stop];
+        RollViewController *rvc =
+        [self.storyboard instantiateViewControllerWithIdentifier:@"rollViewController"];
+        [self.navigationController pushViewController:rvc animated:YES];
     }
 }
 
@@ -318,10 +333,13 @@
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     [self.videoCamera stop];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Try again" style: UIBarButtonItemStyleBordered target:nil action:nil];
     NSLog(@"prepareForSegue: %@", segue.identifier);
-    SecondViewController *sv = [segue destinationViewController];
-    sv.FaceImage = self.FinalFaceImage;
-    sv.FaceImage_Histogram = self.FinalFaceImage_Histogram;
+    if ([segue.identifier isEqualToString: @"gotFaceSegue"]) {
+        SecondViewController *sv = [segue destinationViewController];
+        sv.FaceImage = self.FinalFaceImage;
+        sv.FaceImage_Histogram = self.FinalFaceImage_Histogram;
+    }
 }
 - (IBAction) unwindToMain:(UIStoryboardSegue *) sender {
     NSLog(@"Unwind seque called");

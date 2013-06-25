@@ -25,6 +25,7 @@
     NSString *userSelection;
     bool cameraFrontFacing;
     bool torchIsOn;
+    bool torchShouldBeOn;
     cv::CascadeClassifier *lbpCascade;
     cv::CascadeClassifier *alt2Cascade;
     cv::CascadeClassifier *myCascade;
@@ -56,7 +57,5 @@
 @property (nonatomic, retain) UIImage *FinalFaceImage_Histogram;        // goes to web-site
 @property (nonatomic, retain) MyCvVideoCamera *videoCamera;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *flashSegmentedControl;
-- (IBAction)flashSegmentedControlValueChanged:(id)sender;
 
 @end

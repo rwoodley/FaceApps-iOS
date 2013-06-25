@@ -9,11 +9,11 @@
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="TopLeft" id="3">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="center" id="77h-Vh-YcH">
-                                <rect key="frame" x="-5" y="103" width="325" height="297"/>
+                                <rect key="frame" x="-5" y="103" width="325" height="253"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.9759619270320774" green="1" blue="0.17930375344256022" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -32,44 +32,41 @@
                         </subviews>
                         <color key="backgroundColor" red="0.12017054635855133" green="0.052153564466999716" blue="0.79840353259999997" alpha="0.58999999999999997" colorSpace="calibratedRGB"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="1Xk-To-CIU">
+                            <connections>
+                                <segue destination="ndu-s4-lDz" kind="push" id="2HI-P2-ma9"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="TNl-4o-oE8">
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title="Try again" id="MgO-qL-CBm"/>
                         <barButtonItem key="leftBarButtonItem" id="ZMH-dF-JHY">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Pdl-Ya-InL">
-                                <rect key="frame" x="5" y="7" width="91" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" momentary="YES" id="Pdl-Ya-InL">
+                                <rect key="frame" x="5" y="7" width="242" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Front"/>
-                                    <segment title="Back"/>
+                                    <segment title="No Flash" enabled="NO"/>
+                                    <segment title="Camera Roll"/>
                                 </segments>
                                 <connections>
                                     <action selector="sgmentedControlIndexChanged:" destination="2" eventType="valueChanged" id="ovb-nK-Jq0"/>
                                 </connections>
                             </segmentedControl>
                         </barButtonItem>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="Xfu-KB-YmC">
-                            <rect key="frame" x="104" y="7" width="131" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Flash" enabled="NO"/>
-                                <segment title="No Flash" enabled="NO"/>
-                            </segments>
-                            <connections>
-                                <action selector="flashSegmentedControlValueChanged:" destination="2" eventType="valueChanged" id="Q8f-jD-JaC"/>
-                            </connections>
-                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Mode" id="Hab-oq-O1l">
                             <connections>
                                 <segue destination="wLr-4G-ZPA" kind="push" identifier="gotFaceSegue" id="933-5T-5yh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ALTImageView" destination="MCC-Re-MDs" id="gO0-XY-LU4"/>
                         <outlet property="LBPImageView" destination="Pw3-tw-xXM" id="Yqu-B0-yOI"/>
                         <outlet property="MYImageView" destination="MOS-Rb-2d5" id="XTU-nh-O53"/>
-                        <outlet property="flashSegmentedControl" destination="Xfu-KB-YmC" id="EFm-ST-GmF"/>
                         <outlet property="imageView" destination="77h-Vh-YcH" id="zgc-4Z-Mgn"/>
                         <outlet property="segmentedControl" destination="Pdl-Ya-InL" id="GKj-7i-yYa"/>
                     </connections>
@@ -83,11 +80,11 @@
             <objects>
                 <viewController storyboardIdentifier="secondViewController" id="wLr-4G-ZPA" customClass="SecondViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XiZ-p1-VdZ">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="njE-aA-bgO">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
@@ -120,16 +117,31 @@
             </objects>
             <point key="canvasLocation" x="1167" y="-195"/>
         </scene>
+        <!--Roll View Controller-->
+        <scene sceneID="pUV-C3-2Vu">
+            <objects>
+                <viewController storyboardIdentifier="rollViewController" id="ndu-s4-lDz" customClass="RollViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="" id="jWT-s4-FIe">
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="I0z-Oi-5TA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6In-f0-eMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1175" y="154"/>
+        </scene>
         <!--Web View Controller-->
         <scene sceneID="ncs-Ti-uoF">
             <objects>
                 <viewController storyboardIdentifier="webViewController" id="9Ze-9l-5vG" customClass="WebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f6F-Hx-2gL">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" id="yBN-Cf-F7e">
-                                <rect key="frame" x="-6" y="0.0" width="333" height="504"/>
+                                <rect key="frame" x="-6" y="0.0" width="333" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.24313094537458779" green="1" blue="0.20551476720004558" alpha="1" colorSpace="calibratedRGB"/>
                                 <dataDetectorType key="dataDetectorTypes"/>
@@ -178,6 +190,9 @@
         </scene>
     </scenes>
     <classes>
+        <class className="RollViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RollViewController.h"/>
+        </class>
         <class className="SecondViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
             <relationships>
@@ -190,7 +205,6 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="flashSegmentedControlValueChanged:"/>
                 <relationship kind="action" name="segmentedControl:"/>
                 <relationship kind="action" name="sgmentedControlIndexChanged:"/>
                 <relationship kind="action" name="unwindToMain:" candidateClass="UIStoryboardSegue"/>
@@ -198,7 +212,6 @@
                 <relationship kind="outlet" name="LBPImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="MYImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="TopLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="flashSegmentedControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
             </relationships>
