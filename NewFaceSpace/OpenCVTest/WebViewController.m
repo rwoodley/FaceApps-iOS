@@ -5,6 +5,10 @@
 //  Created by Woodley, Bob on 5/12/13.
 //  Copyright (c) 2013 Woodley, Bob. All rights reserved.
 //
+#import <Foundation/Foundation.h>
+#import <ImageIO/ImageIO.h>
+#import <AssetsLibrary/ALAssetsLibrary.h>
+#import <AssetsLibrary/ALAssetsGroup.h>
 
 #import "WebViewController.h"
 
@@ -109,7 +113,8 @@
         // when you get here, request.URL has the redirect response.
         NSString* launchUrl = [[request URL]  absoluteString];
         //NSLog(@"Redirecting to %@", launchUrl);
-        //[[UIApplication sharedApplication] openURL:[request URL]];
+        int ukey = [self getUKeyFromURL:launchUrl];
+        [self saveImageToFaceFieldAlbum:ukey];
         [self showCarouselWebPage:launchUrl];
         [r setURL: [request URL]];
         return r;
@@ -119,10 +124,81 @@
 }
 - (void) showCarouselWebPage:(NSString *) theURL {
     //NSLog(@"Redirecting to %@", theURL);
-
     NSURL *url = [[NSURL alloc] initWithString:theURL];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     [self.webView loadRequest:request];
+
+}
+- (int) getUKeyFromURL: (NSString *) theURL {
+    if(!theURL||[theURL length]==0) return -1;
+
+    for(NSString* parameter in [theURL componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"?&"]]) {
+        NSRange range = [parameter rangeOfString:@"="];
+        if(range.location!=NSNotFound) {
+            NSString *key = [[parameter substringToIndex:range.location] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+            NSLog(@"Found key %@",key);
+            if (![[key uppercaseString] isEqualToString:@"UKEY"]) continue;
+            NSString *value = [[parameter substringFromIndex:range.location+range.length] stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+            int retval = value.intValue;
+            
+            NSLog(@"Found value %d",retval);
+            return retval;
+        }
+    }
+    return -1;
+}
+- (void)saveImageToFaceFieldAlbum:(int) theID {
+    // from: http://agilewarrior.wordpress.com/2012/02/06/how-to-save-and-read-metadata-for-images-on-the-iphone/
+    ALAssetsLibrary *al = [[ALAssetsLibrary alloc] init];
+    NSMutableDictionary *tiffDictionary = [NSMutableDictionary dictionary];
+    NSString *cachedValue = [NSString stringWithFormat:@"FaceFieldID %d", theID];
+    [tiffDictionary setValue:cachedValue forKey:(NSString *)kCGImagePropertyTIFFMake];
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:tiffDictionary forKey:(NSString *)kCGImagePropertyTIFFDictionary];
+    
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    NSString *albumName = @"FaceField";
+    __weak ALAssetsLibrary *wlibrary = library;
+    [al writeImageToSavedPhotosAlbum:[self.FaceImage CGImage]
+                            metadata:dict
+                     completionBlock:^(NSURL *assetURL, NSError *error) {
+                         if (error == nil) {
+                             [library addAssetsGroupAlbumWithName:albumName resultBlock:^(ALAssetsGroup *group) {
+                                 if (group == nil) {    // means album was already there. so we have to iterate and find it.
+                                     [wlibrary enumerateGroupsWithTypes:ALAssetsGroupAlbum
+                                                             usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                                                                 
+                                                                 if ([albumName compare: [group valueForProperty:ALAssetsGroupPropertyName]]==NSOrderedSame) {
+                                                                     [wlibrary assetForURL: assetURL
+                                                                               resultBlock:^(ALAsset *asset) {
+                                                                                   [group addAsset: asset];
+                                                                               } failureBlock:^(NSError *error) {
+                                                                                   NSLog(@"Error getting Asset from URL");
+                                                                               }];
+                                                                 }
+                                                             } failureBlock:^(NSError *error) {
+                                                                 NSLog(@"Error enumerating albums");
+                                                             }];
+                                 }
+                                 else {                 // album was created and we have a handle to it.
+                                     [wlibrary assetForURL: assetURL
+                                               resultBlock:^(ALAsset *asset) {
+                                                   [group addAsset: asset];
+                                               } failureBlock:^(NSError *error) {
+                                                   NSLog(@"Error getting Asset from URL");
+                                               }];
+                                     NSLog(@"Successfully added photo to FaceField album");
+                                 }
+                             } failureBlock:^(NSError *error) {
+                                 NSLog(@"Error creating FaceField album");
+                             }];
+                         } else {
+                             NSLog(@"Error saving image.");
+                         }
+                     }
+     ];
+    
 
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {

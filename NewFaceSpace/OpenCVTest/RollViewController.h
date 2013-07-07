@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RollViewController : UIViewController
+@interface RollViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
