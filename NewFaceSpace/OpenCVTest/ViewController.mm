@@ -5,6 +5,8 @@
 //  Created by Woodley, Bob on 4/22/13.
 //  Copyright (c) 2013 Woodley, Bob. All rights reserved.
 //
+#import <AssetsLibrary/ALAssetRepresentation.h>
+#import <AssetsLibrary/ALAssetsLibrary.h>
 
 #import "ViewController.h"
 #import "SecondViewController.h"
@@ -318,12 +320,56 @@
             [segmentedControl setTitle:@"No Flash" forSegmentAtIndex:1];
     }
     if (segmentedControl.selectedSegmentIndex == 2) {
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStyleBordered target:nil action:nil];
-        [self.videoCamera stop];
-        RollViewController *rvc =
-        [self.storyboard instantiateViewControllerWithIdentifier:@"rollViewController"];
-        [self.navigationController pushViewController:rvc animated:YES];
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+            
+            imagePicker.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
+            //        imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext;
+            
+            imagePicker.delegate = self;
+            //[self presentModalViewController: imagePicker animated: YES];
+            [self presentViewController:imagePicker animated:YES completion:nil];
+        }
     }
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+        
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    NSURL *assetURL = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
+    [library assetForURL: assetURL
+             resultBlock:^(ALAsset *asset) {
+                 NSDictionary *metadata = asset.defaultRepresentation.metadata;
+                 
+                 //for(id key in metadata) NSLog(@"key=%@ value=%@", key, [metadata objectForKey:key]);
+                 // We're caching the ID in the TIFF dictionary entry with this key: kCGImagePropertyTIFFMake
+                 NSDictionary *tiffDictionary = [metadata objectForKey:(NSString *)kCGImagePropertyTIFFDictionary];
+                 NSString *ourCachedValue = [tiffDictionary objectForKey:(NSString *)kCGImagePropertyTIFFMake];
+                 if (ourCachedValue != NULL) {
+                     NSString *value = [ourCachedValue substringWithRange:NSMakeRange(0, 11)];
+                     if ([value isEqualToString:@"FaceFieldID"]) {
+                         NSString *idString =[ourCachedValue substringWithRange:NSMakeRange(11, [ourCachedValue length]-11)];
+                         NSLog(@"idString: %@", idString);
+                         NSString *urlString = [NSString stringWithFormat:@"http://facefield.org?ukey=%d", idString.intValue];
+                         NSURL *facefieldurl = [[NSURL alloc] initWithString:urlString];
+                         
+                         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStyleBordered target:nil action:nil];
+                         [self.videoCamera stop];
+                         RollViewController *rvc =
+                         [self.storyboard instantiateViewControllerWithIdentifier:@"rollViewController"];
+                         rvc.FaceFieldURL = facefieldurl;
+                         [self.navigationController pushViewController:rvc animated:YES];
+                     }
+                     else
+                         NSLog(@"!!!NOT FOUND!!!");
+                 }
+                 else
+                     NSLog(@"!!!NOT FOUND!!!");
+             } failureBlock:^(NSError *error) {
+                 NSLog(@"Error getting Asset from URL");
+             }];
+    
 }
 
 

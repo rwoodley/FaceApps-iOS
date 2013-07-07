@@ -5,11 +5,9 @@
 //  Created by Woodley, Bob on 6/23/13.
 //  Copyright (c) 2013 Woodley, Bob. All rights reserved.
 //
-#import <AssetsLibrary/ALAssetRepresentation.h>
-#import <AssetsLibrary/ALAssetsLibrary.h>
 
 #import "ViewController.h"
-#import "WebViewController.h"
+//#import "WebViewController.h"
 #import "RollViewController.h"
 
 @interface RollViewController ()
@@ -26,6 +24,11 @@
     }
     return self;
 }
+
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscapeRight;
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     int currentVCIndex = [self.navigationController.viewControllers indexOfObject:self.navigationController.topViewController];
@@ -39,54 +42,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-        
-        imagePicker.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
-        imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext;
-
-        imagePicker.delegate = self;
-        //[self presentModalViewController: imagePicker animated: YES];
-        [self presentViewController:imagePicker animated:YES completion:nil];
-    }
+    _preventRecursion = false;
 }
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [self dismissViewControllerAnimated:YES completion:NULL];
-//    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-//    _imageView.image = image;
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    NSURL *assetURL = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
-    [library assetForURL: assetURL
-              resultBlock:^(ALAsset *asset) {
-                  NSDictionary *metadata = asset.defaultRepresentation.metadata;
-                  
-                  //for(id key in metadata) NSLog(@"key=%@ value=%@", key, [metadata objectForKey:key]);
-                  // We're caching the ID in the TIFF dictionary entry with this key: kCGImagePropertyTIFFMake
-                  NSDictionary *tiffDictionary = [metadata objectForKey:(NSString *)kCGImagePropertyTIFFDictionary];
-                  NSString *ourCachedValue = [tiffDictionary objectForKey:(NSString *)kCGImagePropertyTIFFMake];
-                  if (ourCachedValue != NULL) {
-                      NSString *value = [ourCachedValue substringWithRange:NSMakeRange(0, 11)];
-                      if ([value isEqualToString:@"FaceFieldID"]) {
-                          NSString *idString =[ourCachedValue substringWithRange:NSMakeRange(11, [ourCachedValue length]-11)];
-                          NSLog(@"idString: %@", idString);
-                          /*
-                          WebViewController *webVC =
-                          [self.storyboard instantiateViewControllerWithIdentifier:@"webViewController"];
-                          webVC.FaceImage = self.FaceImage_Histogram;
-                          [self.navigationController pushViewController:webVC animated:YES];
-                           */
-                      }
-                      else
-                          NSLog(@"!!!NOT FOUND!!!");
-                  }
-                  else
-                      NSLog(@"!!!NOT FOUND!!!");
-              } failureBlock:^(NSError *error) {
-                  NSLog(@"Error getting Asset from URL");
-              }];
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (_preventRecursion) return;
+    _preventRecursion = true;
+    // Hack to force this to be in landscape mode:
+    // see: http://stackoverflow.com/questions/9826920/uinavigationcontroller-force-rotate
+    //set statusbar to the desired rotation position
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:NO];
+    //present/dismiss viewcontroller in order to activate rotating.
+    UIViewController *mVC = [[UIViewController alloc] init];
+     [self presentViewController:mVC animated:NO completion:NULL];
+     [self dismissViewControllerAnimated:NO completion:NULL];
+    
+    /*
+    UIViewController * viewController = [[UIViewController alloc] init];
+    [self presentModalViewController:viewController animated:NO];
+    [viewController dismissModalViewControllerAnimated:NO];
+    */
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:_FaceFieldURL];
+    [self.webView loadRequest:request];
+    _preventRecursion = true;
+    
 }
 - (void)didReceiveMemoryWarning
 {

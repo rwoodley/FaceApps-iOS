@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RollViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface RollViewController : UIViewController
+{
+//    NSURL *facefieldurl = [[NSURL alloc] initWithString:urlString];
+    bool _preventRecursion;
+}
+@property (nonatomic, retain) NSURL *FaceFieldURL;
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @end

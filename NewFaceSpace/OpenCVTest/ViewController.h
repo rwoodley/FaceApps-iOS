@@ -11,7 +11,7 @@
 #import "MyCvVideoCamera.h"
 //using namespace cv;
 
-@interface ViewController : UIViewController <CvVideoCameraDelegate>
+@interface ViewController : UIViewController <CvVideoCameraDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     NSDate *_cameraStartRequestTime;
 	SystemSoundID	_sound1;
