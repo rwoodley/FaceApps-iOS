@@ -13,6 +13,8 @@
 
 @interface ViewController : UIViewController <CvVideoCameraDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
+    bool _preventRecursion;
+
     NSDate *_cameraStartRequestTime;
 	SystemSoundID	_sound1;
 	SystemSoundID	_sound2;
@@ -30,6 +32,7 @@
     cv::CascadeClassifier *alt2Cascade;
     cv::CascadeClassifier *myCascade;
     UIImage *_FinalFaceImage;
+    NSURL *_URLFromCameraRoll;
 }
 #ifdef __cplusplus
 - (cv::CascadeClassifier*)loadCascade:(NSString*)filename;
@@ -42,6 +45,7 @@
        defaultPng:(NSString *)defaultPng;
 
 - (void)startCamera;
+- (void)showAlert;
 
 - (IBAction) unwindToMain:(UIStoryboardSegue *) sender;
 

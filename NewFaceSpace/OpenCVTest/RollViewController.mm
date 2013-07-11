@@ -31,12 +31,15 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    /*
     int currentVCIndex = [self.navigationController.viewControllers indexOfObject:self.navigationController.topViewController];
     ViewController *parent = (ViewController *)[self.navigationController.viewControllers objectAtIndex:currentVCIndex];
     if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
         NSLog(@"RollViewController was popped");
         [parent startCamera];
+        [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
     }
+     */
 }
 
 - (void)viewDidLoad
@@ -58,14 +61,9 @@
      [self presentViewController:mVC animated:NO completion:NULL];
      [self dismissViewControllerAnimated:NO completion:NULL];
     
-    /*
-    UIViewController * viewController = [[UIViewController alloc] init];
-    [self presentModalViewController:viewController animated:NO];
-    [viewController dismissModalViewControllerAnimated:NO];
-    */
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:_FaceFieldURL];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:self.FaceFieldURL];
     [self.webView loadRequest:request];
-    _preventRecursion = true;
+    _preventRecursion = false;
     
 }
 - (void)didReceiveMemoryWarning

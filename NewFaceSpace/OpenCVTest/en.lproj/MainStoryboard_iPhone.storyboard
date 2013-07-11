@@ -35,7 +35,7 @@
                     <toolbarItems>
                         <barButtonItem title="Item" id="1Xk-To-CIU">
                             <connections>
-                                <segue destination="ndu-s4-lDz" kind="push" id="2HI-P2-ma9"/>
+                                <segue destination="ndu-s4-lDz" kind="push" identifier="gotFaceFromRollSegue" id="2HI-P2-ma9"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -93,10 +93,10 @@
                     <navigationItem key="navigationItem" id="UKl-eg-6ka">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="ta5-eX-yKM">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="goF-H1-IsS">
-                                <rect key="frame" x="204" y="0.0" width="111" height="44"/>
+                                <rect key="frame" x="105" y="7" width="210" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Submit Face!">
+                                <state key="normal" title="Release Image to Face Field">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -115,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qL4-zw-kCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1167" y="-195"/>
+            <point key="canvasLocation" x="1227" y="-44"/>
         </scene>
         <!--Roll View Controller-->
         <scene sceneID="pUV-C3-2Vu">
@@ -143,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6In-f0-eMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1206" y="-211"/>
+            <point key="canvasLocation" x="1075" y="-234"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="ncs-Ti-uoF">
@@ -202,41 +202,6 @@
             <point key="canvasLocation" x="320" y="-195"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="RollViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RollViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="SecondViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="FaceImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="UIStoryboardSegue" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="unwindToMain:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="outlet" name="ALTImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="LBPImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="MYImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="TopLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="WebViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

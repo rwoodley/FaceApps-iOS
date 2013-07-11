@@ -12,6 +12,7 @@
 {
 //    NSURL *facefieldurl = [[NSURL alloc] initWithString:urlString];
     bool _preventRecursion;
+    NSURL *_FaceFieldURL;
 }
 @property (nonatomic, retain) NSURL *FaceFieldURL;
 

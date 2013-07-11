@@ -23,16 +23,6 @@
 {
     [super viewDidLoad];
 
-    // get orientation right:
-
-    // see: http://stackoverflow.com/questions/9826920/uinavigationcontroller-force-rotate
-    //set statusbar to the desired rotation position
-    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
-    //present/dismiss viewcontroller in order to activate rotating.
-    UIViewController *mVC = [[UIViewController alloc] init];
-    [self presentViewController:mVC animated:NO completion:NULL];
-    [self dismissViewControllerAnimated:NO completion:NULL];
-    
     self.videoCamera = [[MyCvVideoCamera alloc] initWithParentView:_imageView];
 	self.videoCamera.defaultFPS = 15;
 	//self.videoCamera.grayscaleMode = YES;
@@ -40,18 +30,9 @@
 	self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
 	self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
     self.videoCamera.delegate = self;
-
-    // This has to be done before video camera is started because then MyCvVideoCamera->layoutPreview defeats resize somehow.
-    // adjust aspect ratio of UIImage so that there is no distortion of the image.
-    // aspect ratio of UIImage * aspect ratio of the video should = 1.
-    double newHeight = _imageView.frame.size.width * (352.0/288.0);
-    _imageView.frame = CGRectMake(
-                                  _imageView.frame.origin.x,
-                                  _imageView.frame.origin.y, _imageView.frame.size.width, newHeight);
-    NSLog(@"image h*w = %f,%f", _imageView.frame.size.height, _imageView.frame.size.width);
     
     cameraFrontFacing = true;
-    [self startCamera];
+    //[self startCamera];
     [segmentedControl setTitle:@"Front" forSegmentAtIndex:0];
     
     torchIsOn = false;
@@ -324,7 +305,6 @@
             UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
             
             imagePicker.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
-            //        imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext;
             
             imagePicker.delegate = self;
             //[self presentModalViewController: imagePicker animated: YES];
@@ -347,50 +327,88 @@
                  NSDictionary *tiffDictionary = [metadata objectForKey:(NSString *)kCGImagePropertyTIFFDictionary];
                  NSString *ourCachedValue = [tiffDictionary objectForKey:(NSString *)kCGImagePropertyTIFFMake];
                  if (ourCachedValue != NULL) {
-                     NSString *value = [ourCachedValue substringWithRange:NSMakeRange(0, 11)];
-                     if ([value isEqualToString:@"FaceFieldID"]) {
-                         NSString *idString =[ourCachedValue substringWithRange:NSMakeRange(11, [ourCachedValue length]-11)];
-                         NSLog(@"idString: %@", idString);
-                         NSString *urlString = [NSString stringWithFormat:@"http://facefield.org?ukey=%d", idString.intValue];
-                         NSURL *facefieldurl = [[NSURL alloc] initWithString:urlString];
-                         
-                         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStyleBordered target:nil action:nil];
-                         [self.videoCamera stop];
-                         RollViewController *rvc =
-                         [self.storyboard instantiateViewControllerWithIdentifier:@"rollViewController"];
-                         rvc.FaceFieldURL = facefieldurl;
-                         [self.navigationController pushViewController:rvc animated:YES];
+                     if (ourCachedValue.length < 11) {
+                         [self showAlert];
                      }
-                     else
-                         NSLog(@"!!!NOT FOUND!!!");
+                     else {
+                         NSString *value = [ourCachedValue substringWithRange:NSMakeRange(0, 11)];
+                         if ([value isEqualToString:@"FaceFieldID"]) {
+                             NSString *idString =[ourCachedValue substringWithRange:NSMakeRange(11, [ourCachedValue length]-11)];
+                             NSLog(@"idString: %@", idString);
+                             NSString *urlString = [NSString stringWithFormat:@"http://facefield.org?ukey=%d", idString.intValue];
+                             _URLFromCameraRoll = [[NSURL alloc] initWithString:urlString];
+                             
+                             self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStyleBordered target:nil action:nil];
+
+                             [self performSegueWithIdentifier:@"gotFaceFromRollSegue" sender:self];
+                         }
+                         else
+                             [self showAlert];
+                 
+                     }
                  }
                  else
-                     NSLog(@"!!!NOT FOUND!!!");
+                     [self showAlert];
              } failureBlock:^(NSError *error) {
                  NSLog(@"Error getting Asset from URL");
              }];
     
 }
 
+- (void)showAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                    message:@"This photo was not taken with the FaceField app. Go ahead and take a new photo of a face on the main window."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 
+}
 - (void)startCamera {
+    // see: http://stackoverflow.com/questions/9826920/uinavigationcontroller-force-rotate
+    //set statusbar to the desired rotation position
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
+    //present/dismiss viewcontroller in order to activate rotating.
+    UIViewController *mVC = [[UIViewController alloc] init];
+    [self presentViewController:mVC animated:NO completion:NULL];
+    [self dismissViewControllerAnimated:NO completion:NULL];
+    
+    // This has to be done before video camera is started because then MyCvVideoCamera->layoutPreview defeats resize somehow.
+    // adjust aspect ratio of UIImage so that there is no distortion of the image.
+    // aspect ratio of UIImage * aspect ratio of the video should = 1.
+    double newHeight = _imageView.frame.size.width * (352.0/288.0);
+    _imageView.frame = CGRectMake(
+                                  _imageView.frame.origin.x,
+                                  _imageView.frame.origin.y, _imageView.frame.size.width, newHeight);
+    NSLog(@"image h*w = %f,%f", _imageView.frame.size.height, _imageView.frame.size.width);
     _cameraStartRequestTime = [NSDate date];
     [self.videoCamera start];
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     [self.videoCamera stop];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Try again" style: UIBarButtonItemStyleBordered target:nil action:nil];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStyleBordered target:nil action:nil];
     NSLog(@"prepareForSegue: %@", segue.identifier);
     if ([segue.identifier isEqualToString: @"gotFaceSegue"]) {
         SecondViewController *sv = [segue destinationViewController];
         sv.FaceImage = self.FinalFaceImage;
         sv.FaceImage_Histogram = self.FinalFaceImage_Histogram;
     }
+    if ([segue.identifier isEqualToString:@"gotFaceFromRollSegue"]) {
+        RollViewController *rvc = [segue destinationViewController];
+        rvc.FaceFieldURL = _URLFromCameraRoll;
+    }
 }
 - (IBAction) unwindToMain:(UIStoryboardSegue *) sender {
     NSLog(@"Unwind seque called");
     [self.videoCamera start];
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (_preventRecursion) return;
+    _preventRecursion = true;
 
-
+    NSLog(@"******viewDidAppear*****");
+    [self startCamera];
+    _preventRecursion = false;
+}
 @end
