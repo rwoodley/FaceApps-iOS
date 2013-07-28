@@ -23,6 +23,8 @@
 {
     [super viewDidLoad];
 
+    
+    
     self.videoCamera = [[MyCvVideoCamera alloc] initWithParentView:_imageView];
 	self.videoCamera.defaultFPS = 15;
 	//self.videoCamera.grayscaleMode = YES;
@@ -147,12 +149,12 @@
         [self manageTorch:false];
 
     nFaces = [self detectFace: image cleanImage:cleanImage withCascade: myCascade showIn:_MYImageView defaultPng:@"3.png"];
-
+    bool myDetectorFoundFace = nFaces > 0;
     if (nFaces > 0) {
         votes++;
         AudioServicesPlaySystemSound(_sound3);
     }
-    if (votes > 2) {
+    if (votes > 2 || myDetectorFoundFace) {    // change this to '2' to require all 3 haar algos to have a vote.
 
         [self manageTorch:false];
         self.FinalFaceImage = self.TempFaceImage;
@@ -205,7 +207,7 @@
             cv::Rect* r = &faces[i];
             
             // expand so we don't cut off everyone's chin
-            int newWidth = (int) r->width*0.2;
+            int newWidth = (int) r->width*0.30;
             (*r) += cv::Size(newWidth,newWidth);        // overall bigger
             (*r) -= cv::Point(newWidth/2,newWidth/2);   // recenter
             

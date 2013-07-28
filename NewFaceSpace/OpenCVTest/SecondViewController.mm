@@ -63,7 +63,8 @@
     
     NSLog(@"***prepareForSegue: %@", segue.identifier);
     WebViewController *webVC = [segue destinationViewController];
-    webVC.FaceImage = self.FaceImage_Histogram;
+    //webVC.FaceImage = self.FaceImage_Histogram;
+    webVC.FaceImage = self.FaceImage;
 }
 /*
 - (IBAction)userTappedSubmitFace:(id)sender {
