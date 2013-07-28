@@ -22,8 +22,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    
     
     self.videoCamera = [[MyCvVideoCamera alloc] initWithParentView:_imageView];
 	self.videoCamera.defaultFPS = 15;
@@ -303,6 +301,8 @@
             [segmentedControl setTitle:@"No Flash" forSegmentAtIndex:1];
     }
     if (segmentedControl.selectedSegmentIndex == 2) {
+        [self.videoCamera stop];
+
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
             UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
             
@@ -312,6 +312,14 @@
             //[self presentModalViewController: imagePicker animated: YES];
             [self presentViewController:imagePicker animated:YES completion:nil];
         }
+    }
+    if (segmentedControl.selectedSegmentIndex == 3){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tips:"
+                                                        message:@"Remove glasses.\nKeep your face level, not tilted.\nLighting should be strong and even.\nAvoid side lighting or top/bottom lighting."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info

@@ -72,7 +72,7 @@
 		464801631729EB8A00AC7B02 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SecondViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		464801641729EB8A00AC7B02 /* SecondViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = SecondViewController.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4658DAD6172B92E30030BE32 /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
-		466CC3C817260DD50021A943 /* FaceSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		466CC3C817260DD50021A943 /* Face Field.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Face Field.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		466CC3CB17260DD50021A943 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		466CC3CD17260DD50021A943 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		466CC3CF17260DD50021A943 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -149,7 +149,7 @@
 		466CC3C917260DD50021A943 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				466CC3C817260DD50021A943 /* FaceSpace.app */,
+				466CC3C817260DD50021A943 /* Face Field.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,9 +234,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		466CC3C717260DD50021A943 /* FaceSpace */ = {
+		466CC3C717260DD50021A943 /* FaceField */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 466CC3EE17260DD50021A943 /* Build configuration list for PBXNativeTarget "FaceSpace" */;
+			buildConfigurationList = 466CC3EE17260DD50021A943 /* Build configuration list for PBXNativeTarget "FaceField" */;
 			buildPhases = (
 				466CC3C417260DD50021A943 /* Sources */,
 				466CC3C517260DD50021A943 /* Frameworks */,
@@ -246,9 +246,9 @@
 			);
 			dependencies = (
 			);
-			name = FaceSpace;
+			name = FaceField;
 			productName = OpenCVTest;
-			productReference = 466CC3C817260DD50021A943 /* FaceSpace.app */;
+			productReference = 466CC3C817260DD50021A943 /* Face Field.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -272,7 +272,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				466CC3C717260DD50021A943 /* FaceSpace */,
+				466CC3C717260DD50021A943 /* FaceField */,
 			);
 		};
 /* End PBXProject section */
@@ -429,7 +429,7 @@
 				INFOPLIST_FILE = "OpenCVTest/FaceSpace-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-lc++";
-				PRODUCT_NAME = FaceSpace;
+				PRODUCT_NAME = "Face Field";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -448,7 +448,7 @@
 				INFOPLIST_FILE = "OpenCVTest/FaceSpace-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-lc++";
-				PRODUCT_NAME = FaceSpace;
+				PRODUCT_NAME = "Face Field";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -466,7 +466,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		466CC3EE17260DD50021A943 /* Build configuration list for PBXNativeTarget "FaceSpace" */ = {
+		466CC3EE17260DD50021A943 /* Build configuration list for PBXNativeTarget "FaceField" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				466CC3EF17260DD50021A943 /* Debug */,
