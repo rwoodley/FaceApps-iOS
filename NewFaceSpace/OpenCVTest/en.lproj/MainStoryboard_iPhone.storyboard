@@ -85,11 +85,20 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="njE-aA-bgO">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fD0-ww-nD4">
+                                <rect key="frame" x="8" y="357" width="305" height="103"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="This is a long "/>
+                                <string key="text">By clicking 'Release Image to Face Field' you consent to donate this photo to Facefield.org which will use it for art projects on the Facefield.org web site and related mobile applications. By submitting a photograph, you (and any other individual depicted in a photograph) consent to such publication.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="UKl-eg-6ka">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="ta5-eX-yKM">
@@ -222,8 +231,6 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="segmentedControl:"/>
-                <relationship kind="action" name="sgmentedControlIndexChanged:"/>
                 <relationship kind="action" name="unwindToMain:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="outlet" name="ALTImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="LBPImageView" candidateClass="UIImageView"/>
