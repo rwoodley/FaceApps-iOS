@@ -11,7 +11,7 @@
 #import "MyCvVideoCamera.h"
 //using namespace cv;
 
-@interface ViewController : UIViewController <CvVideoCameraDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface ViewController : UIViewController <CvVideoCameraDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate>
 {
     bool _preventRecursion;
 

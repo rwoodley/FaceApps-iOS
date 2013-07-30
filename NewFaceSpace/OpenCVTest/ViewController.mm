@@ -18,11 +18,23 @@
 
 @implementation ViewController
 @synthesize segmentedControl;
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    exit(0);
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    if (![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Camera required."
+                                                        message:@"Sorry! Your device needs to have a camera to use this app."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+
+    }
     self.videoCamera = [[MyCvVideoCamera alloc] initWithParentView:_imageView];
 	self.videoCamera.defaultFPS = 15;
 	//self.videoCamera.grayscaleMode = YES;
@@ -31,9 +43,20 @@
 	self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
     self.videoCamera.delegate = self;
     
-    cameraFrontFacing = true;
-    //[self startCamera];
-    [segmentedControl setTitle:@"Front" forSegmentAtIndex:0];
+    if( [UIImagePickerController isCameraDeviceAvailable: UIImagePickerControllerCameraDeviceFront ])
+    {
+        cameraFrontFacing = true;
+        [segmentedControl setTitle:@"Front" forSegmentAtIndex:0];
+        if( ![UIImagePickerController isCameraDeviceAvailable: UIImagePickerControllerCameraDeviceRear ])
+            [segmentedControl setEnabled:false forSegmentAtIndex:0];    // can't change it if no back camera
+    }
+    else
+        if( [UIImagePickerController isCameraDeviceAvailable: UIImagePickerControllerCameraDeviceRear ])
+        {
+            cameraFrontFacing = false;
+            [segmentedControl setTitle:@"Back" forSegmentAtIndex:0];
+            [segmentedControl setEnabled:false forSegmentAtIndex:0];    // can't change it if no front camera
+        }
     
     torchIsOn = false;
     torchShouldBeOn = false;
