@@ -89,10 +89,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fD0-ww-nD4">
-                                <rect key="frame" x="8" y="357" width="305" height="103"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="8" y="357" width="306" height="103"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="This is a long "/>
-                                <string key="text">By clicking 'Release Image to Face Field' you consent to donate this photo to Facefield.org which will use it for art projects on the Facefield.org web site and related mobile applications. By submitting a photograph, you (and any other individual depicted in a photograph) consent to such publication.</string>
+                                <string key="text">By clicking 'Release Image to Face Field' you consent to donate this photo to Facefield.org which will use it for art projects on the Facefield.org web site and related mobile applications. By submitting a photograph, you (and any other individual depicted in the photograph) consent to such publication.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
