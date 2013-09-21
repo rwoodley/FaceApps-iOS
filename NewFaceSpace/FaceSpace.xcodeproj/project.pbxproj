@@ -25,9 +25,6 @@
 		466CC3D617260DD50021A943 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 466CC3D417260DD50021A943 /* InfoPlist.strings */; };
 		466CC3D817260DD50021A943 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 466CC3D717260DD50021A943 /* main.m */; };
 		466CC3DC17260DD50021A943 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 466CC3DB17260DD50021A943 /* AppDelegate.m */; };
-		466CC3DE17260DD50021A943 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 466CC3DD17260DD50021A943 /* Default.png */; };
-		466CC3E017260DD50021A943 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 466CC3DF17260DD50021A943 /* Default@2x.png */; };
-		466CC3E217260DD50021A943 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 466CC3E117260DD50021A943 /* Default-568h@2x.png */; };
 		466CC3E517260DD50021A943 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466CC3E317260DD50021A943 /* MainStoryboard_iPhone.storyboard */; };
 		466CC3E817260DD50021A943 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466CC3E617260DD50021A943 /* MainStoryboard_iPad.storyboard */; };
 		466CC3EB17260DD50021A943 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 466CC3EA17260DD50021A943 /* ViewController.mm */; };
@@ -53,6 +50,12 @@
 		D58F9C8E17A553B60066310D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D58F9C8817A553B60066310D /* Icon.png */; };
 		D58F9C8F17A553B60066310D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58F9C8917A553B60066310D /* Icon@2x.png */; };
 		D58F9C9017A553B60066310D /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = D58F9C8A17A553B60066310D /* iTunesArtwork.png */; };
+		D5B189E617A7710E00508F81 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B189E117A7710E00508F81 /* Default~iphone.png */; };
+		D5B189E717A7710E00508F81 /* Default@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B189E217A7710E00508F81 /* Default@2x~iphone.png */; };
+		D5B189E817A7710E00508F81 /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B189E317A7710E00508F81 /* Default-568h.png */; };
+		D5B189EB17A779E300508F81 /* Default@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B189EA17A779E300508F81 /* Default@2x~ipad.png */; };
+		D5B189ED17A779EC00508F81 /* Default~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B189EC17A779EC00508F81 /* Default~ipad.png */; };
+		D5C8784017BDDDFC0016D7D7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5C8783F17BDDDFC0016D7D7 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,7 +75,7 @@
 		464801631729EB8A00AC7B02 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SecondViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		464801641729EB8A00AC7B02 /* SecondViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = SecondViewController.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4658DAD6172B92E30030BE32 /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
-		466CC3C817260DD50021A943 /* Face Field.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Face Field.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		466CC3C817260DD50021A943 /* AntiFace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AntiFace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		466CC3CB17260DD50021A943 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		466CC3CD17260DD50021A943 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		466CC3CF17260DD50021A943 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -82,9 +85,6 @@
 		466CC3D917260DD50021A943 /* FaceSpace-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "FaceSpace-Prefix.pch"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		466CC3DA17260DD50021A943 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		466CC3DB17260DD50021A943 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		466CC3DD17260DD50021A943 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		466CC3DF17260DD50021A943 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		466CC3E117260DD50021A943 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		466CC3E417260DD50021A943 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		466CC3E717260DD50021A943 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		466CC3E917260DD50021A943 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -111,6 +111,12 @@
 		D58F9C8817A553B60066310D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		D58F9C8917A553B60066310D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		D58F9C8A17A553B60066310D /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		D5B189E117A7710E00508F81 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
+		D5B189E217A7710E00508F81 /* Default@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x~iphone.png"; sourceTree = "<group>"; };
+		D5B189E317A7710E00508F81 /* Default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h.png"; sourceTree = "<group>"; };
+		D5B189EA17A779E300508F81 /* Default@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x~ipad.png"; sourceTree = "<group>"; };
+		D5B189EC17A779EC00508F81 /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~ipad.png"; sourceTree = "<group>"; };
+		D5C8783F17BDDDFC0016D7D7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +146,7 @@
 		466CC3BF17260DD50021A943 = {
 			isa = PBXGroup;
 			children = (
+				D5C8783F17BDDDFC0016D7D7 /* Default-568h@2x.png */,
 				466CC3D117260DD50021A943 /* FaceSpace */,
 				466CC3CA17260DD50021A943 /* Frameworks */,
 				466CC3C917260DD50021A943 /* Products */,
@@ -149,7 +156,7 @@
 		466CC3C917260DD50021A943 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				466CC3C817260DD50021A943 /* Face Field.app */,
+				466CC3C817260DD50021A943 /* AntiFace.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,6 +224,11 @@
 				461A165517434DD90098B122 /* 1.png */,
 				461A165617434DD90098B122 /* 2.png */,
 				461A165717434DD90098B122 /* 3.png */,
+				D5B189EA17A779E300508F81 /* Default@2x~ipad.png */,
+				D5B189EC17A779EC00508F81 /* Default~ipad.png */,
+				D5B189E117A7710E00508F81 /* Default~iphone.png */,
+				D5B189E217A7710E00508F81 /* Default@2x~iphone.png */,
+				D5B189E317A7710E00508F81 /* Default-568h.png */,
 				461A165017408B660098B122 /* constrained_frontalface.xml */,
 				46175CA4173207B6008D6557 /* lbpcascade_frontalface.xml */,
 				4658DAD6172B92E30030BE32 /* haarcascade_frontalface_alt2.xml */,
@@ -224,9 +236,6 @@
 				466CC3D417260DD50021A943 /* InfoPlist.strings */,
 				466CC3D717260DD50021A943 /* main.m */,
 				466CC3D917260DD50021A943 /* FaceSpace-Prefix.pch */,
-				466CC3DD17260DD50021A943 /* Default.png */,
-				466CC3DF17260DD50021A943 /* Default@2x.png */,
-				466CC3E117260DD50021A943 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -234,9 +243,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		466CC3C717260DD50021A943 /* FaceField */ = {
+		466CC3C717260DD50021A943 /* AntiFace */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 466CC3EE17260DD50021A943 /* Build configuration list for PBXNativeTarget "FaceField" */;
+			buildConfigurationList = 466CC3EE17260DD50021A943 /* Build configuration list for PBXNativeTarget "AntiFace" */;
 			buildPhases = (
 				466CC3C417260DD50021A943 /* Sources */,
 				466CC3C517260DD50021A943 /* Frameworks */,
@@ -246,9 +255,9 @@
 			);
 			dependencies = (
 			);
-			name = FaceField;
+			name = AntiFace;
 			productName = OpenCVTest;
-			productReference = 466CC3C817260DD50021A943 /* Face Field.app */;
+			productReference = 466CC3C817260DD50021A943 /* AntiFace.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -258,7 +267,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = "Woodley, Bob";
+				ORGANIZATIONNAME = SteamSpace;
 			};
 			buildConfigurationList = 466CC3C317260DD50021A943 /* Build configuration list for PBXProject "FaceSpace" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -272,7 +281,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				466CC3C717260DD50021A943 /* FaceField */,
+				466CC3C717260DD50021A943 /* AntiFace */,
 			);
 		};
 /* End PBXProject section */
@@ -283,9 +292,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				466CC3D617260DD50021A943 /* InfoPlist.strings in Resources */,
-				466CC3DE17260DD50021A943 /* Default.png in Resources */,
-				466CC3E017260DD50021A943 /* Default@2x.png in Resources */,
-				466CC3E217260DD50021A943 /* Default-568h@2x.png in Resources */,
 				466CC3E517260DD50021A943 /* MainStoryboard_iPhone.storyboard in Resources */,
 				466CC3E817260DD50021A943 /* MainStoryboard_iPad.storyboard in Resources */,
 				4658DAD7172B92E30030BE32 /* haarcascade_frontalface_alt2.xml in Resources */,
@@ -308,6 +314,12 @@
 				D58F9C8E17A553B60066310D /* Icon.png in Resources */,
 				D58F9C8F17A553B60066310D /* Icon@2x.png in Resources */,
 				D58F9C9017A553B60066310D /* iTunesArtwork.png in Resources */,
+				D5B189E617A7710E00508F81 /* Default~iphone.png in Resources */,
+				D5B189E717A7710E00508F81 /* Default@2x~iphone.png in Resources */,
+				D5B189E817A7710E00508F81 /* Default-568h.png in Resources */,
+				D5B189EB17A779E300508F81 /* Default@2x~ipad.png in Resources */,
+				D5B189ED17A779EC00508F81 /* Default~ipad.png in Resources */,
+				D5C8784017BDDDFC0016D7D7 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,8 +440,9 @@
 				GCC_PREFIX_HEADER = "OpenCVTest/FaceSpace-Prefix.pch";
 				INFOPLIST_FILE = "OpenCVTest/FaceSpace-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lc++";
-				PRODUCT_NAME = "Face Field";
+				PRODUCT_NAME = AntiFace;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -447,12 +460,117 @@
 				GCC_PREFIX_HEADER = "OpenCVTest/FaceSpace-Prefix.pch";
 				INFOPLIST_FILE = "OpenCVTest/FaceSpace-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lc++";
-				PRODUCT_NAME = "Face Field";
+				PRODUCT_NAME = AntiFace;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
+		};
+		D57B3A5B17C5BB8800E70CBB /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		D57B3A5C17C5BB8800E70CBB /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Woodley (V7M6HK6WGU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Woodley (V7M6HK6WGU)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../ios\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenCVTest/FaceSpace-Prefix.pch";
+				INFOPLIST_FILE = "OpenCVTest/FaceSpace-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-lc++";
+				PRODUCT_NAME = AntiFace;
+				PROVISIONING_PROFILE = "ACD9D19E-5406-4DD9-ACB3-F9C7C8CA5E5A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ACD9D19E-5406-4DD9-ACB3-F9C7C8CA5E5A";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Distribution;
+		};
+		D5C8783D17BDD9050016D7D7 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AdHoc;
+		};
+		D5C8783E17BDD9050016D7D7 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../ios\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenCVTest/FaceSpace-Prefix.pch";
+				INFOPLIST_FILE = "OpenCVTest/FaceSpace-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-lc++";
+				PRODUCT_NAME = AntiFace;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = AdHoc;
 		};
 /* End XCBuildConfiguration section */
 
@@ -462,15 +580,19 @@
 			buildConfigurations = (
 				466CC3EC17260DD50021A943 /* Debug */,
 				466CC3ED17260DD50021A943 /* Release */,
+				D5C8783D17BDD9050016D7D7 /* AdHoc */,
+				D57B3A5B17C5BB8800E70CBB /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		466CC3EE17260DD50021A943 /* Build configuration list for PBXNativeTarget "FaceField" */ = {
+		466CC3EE17260DD50021A943 /* Build configuration list for PBXNativeTarget "AntiFace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				466CC3EF17260DD50021A943 /* Debug */,
 				466CC3F017260DD50021A943 /* Release */,
+				D5C8783E17BDD9050016D7D7 /* AdHoc */,
+				D57B3A5C17C5BB8800E70CBB /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

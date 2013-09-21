@@ -175,7 +175,7 @@
         votes++;
         AudioServicesPlaySystemSound(_sound3);
     }
-    if (votes > 2 || myDetectorFoundFace) {    // change this to '2' to require all 3 haar algos to have a vote.
+    if (votes > 1 || myDetectorFoundFace) {    // change this to '2' to require all 3 haar algos to have a vote.
 
         [self manageTorch:false];
         self.FinalFaceImage = self.TempFaceImage;
@@ -212,6 +212,8 @@
         int minSize = 120;
         cv::Size haar_minSize = cvSize(minSize, minSize);
         std::vector<cv::Rect> faces;
+
+        //NSLog(@"rows=%d cols=%d", image.rows, image.cols);
 
         //NSDate *start = [NSDate date];
         cascade->detectMultiScale(image, faces, haar_scale,
@@ -327,13 +329,24 @@
         [self.videoCamera stop];
 
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
             
-            imagePicker.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
-            
-            imagePicker.delegate = self;
-            //[self presentModalViewController: imagePicker animated: YES];
-            [self presentViewController:imagePicker animated:YES completion:nil];
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+                imagePickerController.delegate = self;
+                UIPopoverController *popoverController=[[UIPopoverController alloc] initWithContentViewController:imagePickerController];
+                popoverController.delegate=self;
+                [popoverController presentPopoverFromRect:((UIButton *)sender).bounds inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+                _popover = popoverController;
+            }
+            else {
+                UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+                
+                imagePicker.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
+                
+                imagePicker.delegate = self;
+                //[self presentModalViewController: imagePicker animated: YES];
+                [self presentViewController:imagePicker animated:YES completion:nil];
+            }
         }
     }
     if (segmentedControl.selectedSegmentIndex == 3){
@@ -348,7 +361,10 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
-        
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+        [_popover dismissPopoverAnimated:YES];
+    //[_popover.delegate popoverControllerDidDismissPopover:self.PopUp];
+    
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     NSURL *assetURL = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
     [library assetForURL: assetURL
@@ -371,7 +387,7 @@
                              NSString *urlString = [NSString stringWithFormat:@"http://facefield.org?ukey=%d", idString.intValue];
                              _URLFromCameraRoll = [[NSURL alloc] initWithString:urlString];
                              
-                             self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStyleBordered target:nil action:nil];
+                             self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Try Again" style: UIBarButtonItemStyleBordered target:nil action:nil];
 
                              [self performSegueWithIdentifier:@"gotFaceFromRollSegue" sender:self];
                          }
@@ -390,7 +406,7 @@
 
 - (void)showAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                    message:@"This photo was not taken with the FaceField app. Go ahead and take a new photo of a face on the main window."
+                                                    message:@"This photo was not taken with the AntiFace app. Go ahead and take a new photo of a face on the main window."
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -419,7 +435,7 @@
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     [self.videoCamera stop];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStyleBordered target:nil action:nil];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Try again" style: UIBarButtonItemStyleBordered target:nil action:nil];
     NSLog(@"prepareForSegue: %@", segue.identifier);
     if ([segue.identifier isEqualToString: @"gotFaceSegue"]) {
         SecondViewController *sv = [segue destinationViewController];

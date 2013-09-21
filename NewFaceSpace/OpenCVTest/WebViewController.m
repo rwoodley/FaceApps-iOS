@@ -158,7 +158,7 @@
     [dict setValue:tiffDictionary forKey:(NSString *)kCGImagePropertyTIFFDictionary];
     
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    NSString *albumName = @"FaceField";
+    NSString *albumName = @"AntiFace";
     __weak ALAssetsLibrary *wlibrary = library;
     [al writeImageToSavedPhotosAlbum:[self.FaceImage CGImage]
                             metadata:dict
@@ -188,10 +188,10 @@
                                                } failureBlock:^(NSError *error) {
                                                    NSLog(@"Error getting Asset from URL");
                                                }];
-                                     NSLog(@"Successfully added photo to FaceField album");
+                                     NSLog(@"Successfully added photo to AntiFace album");
                                  }
                              } failureBlock:^(NSError *error) {
-                                 NSLog(@"Error creating FaceField album");
+                                 NSLog(@"Error creating AntiFace album");
                              }];
                          } else {
                              NSLog(@"Error saving image.");

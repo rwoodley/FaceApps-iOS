@@ -88,15 +88,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fD0-ww-nD4">
-                                <rect key="frame" x="8" y="357" width="306" height="103"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <accessibility key="accessibilityConfiguration" label="This is a long "/>
-                                <string key="text">By clicking 'Release Image to Face Field' you consent to donate this photo to Facefield.org which will use it for art projects on the Facefield.org web site and related mobile applications. By submitting a photograph, you (and any other individual depicted in the photograph) consent to such publication.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -107,7 +98,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <state key="normal" title="Release Image to Face Field">
+                                <state key="normal" title="Compute Anti-Face">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <state key="highlighted">
@@ -231,6 +222,8 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="segmentedControl:"/>
+                <relationship kind="action" name="sgmentedControlIndexChanged:"/>
                 <relationship kind="action" name="unwindToMain:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="outlet" name="ALTImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="LBPImageView" candidateClass="UIImageView"/>

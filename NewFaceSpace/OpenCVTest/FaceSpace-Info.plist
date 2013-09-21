@@ -16,7 +16,7 @@
 		<string>Icon-Small-50</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.bob.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.SteamSpace.Face-Field</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -24,9 +24,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<array>
-		<string></string>
-	</array>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>

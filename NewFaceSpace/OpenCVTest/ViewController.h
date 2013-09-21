@@ -11,10 +11,10 @@
 #import "MyCvVideoCamera.h"
 //using namespace cv;
 
-@interface ViewController : UIViewController <CvVideoCameraDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate>
+@interface ViewController : UIViewController <CvVideoCameraDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIPopoverControllerDelegate,UIAlertViewDelegate>
 {
     bool _preventRecursion;
-
+    UIPopoverController *_popover;
     NSDate *_cameraStartRequestTime;
 	SystemSoundID	_sound1;
 	SystemSoundID	_sound2;
