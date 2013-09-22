@@ -105,13 +105,14 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9Ze-9l-5vG" kind="push" identifier="loadWebPageSeque" id="o8b-bv-Fr4"/>
+                                    <action selector="ComputeAntiFaceButton:" destination="wLr-4G-ZPA" eventType="touchUpInside" id="ekK-73-03n"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="FaceImageView" destination="njE-aA-bgO" id="AhG-Iq-InC"/>
+                        <segue destination="9Ze-9l-5vG" kind="push" identifier="segue.to.webview" id="DZS-tS-kLU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qL4-zw-kCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -213,6 +214,7 @@
         <class className="SecondViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
             <relationships>
+                <relationship kind="action" name="ComputeAntiFaceButton:"/>
                 <relationship kind="outlet" name="FaceImageView" candidateClass="UIImageView"/>
             </relationships>
         </class>
@@ -222,8 +224,6 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="segmentedControl:"/>
-                <relationship kind="action" name="sgmentedControlIndexChanged:"/>
                 <relationship kind="action" name="unwindToMain:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="outlet" name="ALTImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="LBPImageView" candidateClass="UIImageView"/>

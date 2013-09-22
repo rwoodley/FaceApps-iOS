@@ -60,11 +60,33 @@
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     // ----
+//    [self readyToNavigateAwayFromTab];
+    // ----
     
     NSLog(@"***prepareForSegue: %@", segue.identifier);
     WebViewController *webVC = [segue destinationViewController];
     //webVC.FaceImage = self.FaceImage_Histogram;
     webVC.FaceImage = self.FaceImage;
+}
+- (IBAction)ComputeAntiFaceButton:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Agree Terms"
+                          message:@"By clicking 'I agree' you consent to upload this photo to Facefield.org which will use it for art projects such as this one. By submitting a photograph, you (and any other individual depicted in the photograph) consent to such usage. All uploads are anonymous - we only upload your image and do not collect other identifying information."
+                          delegate:self
+                          cancelButtonTitle:@"Cancel"
+                          otherButtonTitles:@"I agree", nil
+                          ];
+    [alert show];
+}
+#define CANCEL 0
+#define OK 1
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if( buttonIndex ==  OK) {
+        // segue.to.webview
+        [self performSegueWithIdentifier:@"segue.to.webview" sender:self];
+    }
+    NSLog(@"ButtonIndex = %d", buttonIndex);
+
 }
 /*
 - (IBAction)userTappedSubmitFace:(id)sender {

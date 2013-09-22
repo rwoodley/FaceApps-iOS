@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface SecondViewController : UIViewController <UIAlertViewDelegate>
 {
     UIImage *_FaceImage;
 //    NSMutableData *_responseData;
+    int _userAcceptedTerms;
 }
 
 @property (nonatomic, retain) UIImage *FaceImage;
 @property (nonatomic, retain) UIImage *FaceImage_Histogram;
-
 @property (weak, nonatomic) IBOutlet UIImageView *FaceImageView;
 //- (IBAction)userTappedSubmitFace:(id)sender;
+- (IBAction)ComputeAntiFaceButton:(id)sender;
+
 @end
