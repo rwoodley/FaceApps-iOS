@@ -373,8 +373,8 @@
                  
                  //for(id key in metadata) NSLog(@"key=%@ value=%@", key, [metadata objectForKey:key]);
                  // We're caching the ID in the TIFF dictionary entry with this key: kCGImagePropertyTIFFMake
-                 NSDictionary *tiffDictionary = [metadata objectForKey:(NSString *)kCGImagePropertyTIFFDictionary];
-                 NSString *ourCachedValue = [tiffDictionary objectForKey:(NSString *)kCGImagePropertyTIFFMake];
+                 NSDictionary *tiffDictionary = [metadata objectForKey:(__bridge NSString *)kCGImagePropertyTIFFDictionary];
+                 NSString *ourCachedValue = [tiffDictionary objectForKey:(__bridge NSString *)kCGImagePropertyTIFFMake];
                  if (ourCachedValue != NULL) {
                      if (ourCachedValue.length < 11) {
                          [self showAlert];
